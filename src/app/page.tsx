@@ -1,24 +1,29 @@
 "use client";
 import Image from "next/image";
-import useHealthCheck, { HealthCheckResponseI } from "./utils/useHealthCheck";
+import useHealthCheck, { HealthCheckResponseI } from "../hooks/useHealthCheck";
 import { redirect } from "next/navigation";
-import Skeleton from "./components/Skeleton";
-import Bento from "./components/Bento";
-import { ServerDownException } from "./_exceptions/ServerDownException";
+import Skeleton from "../components/Skeleton";
+import Bento from "../components/Bento";
+import { ServerDownException } from "../exceptions/ServerDownException";
+import Navbar from "../components/Navbar";
+import DaisyThemeProvider from "@/hooks/useDaisyTheme";
 
 export default function Home() {
-  const healthCheckData: HealthCheckResponseI = useHealthCheck(true);
-  if (healthCheckData.loading===false && !healthCheckData.ok) throw new ServerDownException("Server is Down");
+  const healthCheckData: HealthCheckResponseI = useHealthCheck(false);
+  if (healthCheckData.loading === false && !healthCheckData.ok) throw new ServerDownException("Server is Down");
   console.log(healthCheckData)
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start px-16 py-8">
-      {
-        healthCheckData.loading ?
-          <Skeleton /> :
-          <>
-          <Bento/>
-          </>
-      }
-    </main>
+    <DaisyThemeProvider>
+      <main className="flex min-h-screen flex-col items-center justify-start px-16 py-8">
+        {
+          healthCheckData.loading ?
+            <Skeleton /> :
+            <>
+              <Navbar />
+              <Bento />
+            </>
+        }
+      </main>
+    </DaisyThemeProvider>
   );
 }

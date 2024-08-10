@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Error from "next/error";
+import { ServerDownException } from "../exceptions/ServerDownException";
 
 const RootError = ({error, reset} : {error : Error & {digest : string}, reset : () => void}) => {
-    console.log("Error at Root : ", error);
+    console.log("Error at Root : ", error, error instanceof ServerDownException);
     const {props} = error;
     return (
         <section className="hero min-h-screen bg-base-100">
