@@ -1,0 +1,3 @@
+interface User {
+    id : O
+}
