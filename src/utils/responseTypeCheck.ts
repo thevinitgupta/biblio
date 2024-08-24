@@ -1,4 +1,4 @@
-import { ResponseType } from "../../types/enums";
+import { ResponseType } from "../types/enums";
 
 export const checkType  = (loginResponse : string) : ResponseType => {
     if(loginResponse.includes("SUCCESS")) return ResponseType.success;

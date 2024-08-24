@@ -2,6 +2,8 @@
 import Image from 'next/image'
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { loggingService } from './actions/logging';
+import { LoggerLevel } from '@/types/enums';
 
 const inter = Inter({ subsets: ["latin"] });
 export default function GlobalError({
@@ -11,9 +13,9 @@ export default function GlobalError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  console.log("Error at Global : ", error.message);
+  loggingService("Global Error : "+error.digest, LoggerLevel.error);
   return (
-    <html data-theme="noir"  lang="en">
+    <html data-theme="noir" lang="en">
       <body className={inter.className}>
       <section className="hero min-h-screen bg-base-100">
             <div className="hero-content flex-col justify-start lg:flex-row lg:gap-14">

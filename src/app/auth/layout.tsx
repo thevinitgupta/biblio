@@ -2,6 +2,9 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import BackgroundImage from "./BackgroundImage";
+import { getSession } from "@/utils/sessions";
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 export enum AuthTab  {
     LOGIN,
@@ -13,15 +16,8 @@ const AuthLayout = ({ children, login, signup }: {
     login: React.ReactNode,
     signup: React.ReactNode,
 }) => {
-    const [theme, setTheme] = useState("");
     const [activeTab, setActiveTab] = useState<AuthTab>(AuthTab.LOGIN);
-    useEffect(() => {
-        setTheme(value => {
-            // return "ivory"
-            return window.localStorage.getItem("daisy-theme") || "ivory";
-        });
 
-    }, [])
     return (
         <main className="flex h-screen flex-col items-center justify-center px-16 py-8">
             <BackgroundImage />

@@ -1,0 +1,17 @@
+24-08-2024 01:54:48.031 PM [development] info: Login for user : thevinitgupta@gmail.com
+24-08-2024 03:00:05.679 PM [development] error: Client Error : Invalid User Credentials
+24-08-2024 03:01:05.100 PM [development] error: Client Error : Invalid User Credentials
+24-08-2024 03:02:24.176 PM [development] error: Client Error : Invalid User Credentials
+24-08-2024 03:04:26.892 PM [development] error: Client Error : Invalid User Credentials
+24-08-2024 03:04:57.311 PM [development] error: Client Error : Invalid User Credentials
+24-08-2024 03:04:57.312 PM [development] warn: Error On Client Side
+24-08-2024 07:28:52.361 PM [development] warn: Client Warning : Invalid Email
+24-08-2024 07:29:08.124 PM [development] warn: Client Warning : Server not Running
+24-08-2024 07:29:24.625 PM [development] error: Client Error : Invalid User Credentials
+24-08-2024 07:29:39.780 PM [development] info: Login for user : thevinitgupta@gmail.com
+24-08-2024 07:32:55.216 PM [development] error: Client Error : Input 
+24-08-2024 07:32:55.231 PM [development] error: Client Error : Input 
+24-08-2024 07:32:55.245 PM [development] error: Client Error : Input 
+24-08-2024 07:32:55.265 PM [development] error: Client Error : Input 
+24-08-2024 07:37:42.245 PM [development] error: Client Error : Invalid User Credentials
+24-08-2024 07:41:09.118 PM [development] warn: Client Warning : Unrecognised User trying to access
