@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ResponseType } from "./enums";
 
 const SessionDataSchema = z.object({
     iss : z.string().min(4, "Issuer is empty"),
@@ -12,3 +13,9 @@ const SessionDataSchema = z.object({
 
 export type SessionData = z.infer<typeof SessionDataSchema>;
 
+
+export type LoginResponseType = {
+    message : string,
+    token? : string,
+    type : ResponseType
+}

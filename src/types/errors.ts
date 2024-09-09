@@ -1,3 +1,5 @@
+import { ResponseType } from "./enums"
+
 export enum applicationErrors {
     INTERNET_ERROR,
     NETWORK_ERROR,
@@ -7,4 +9,10 @@ export enum applicationErrors {
     NO_AUTH_ERROR,
     NO_PERMISSION_ERROR,
     HTTP_ERROR
+}
+
+export type ErrorResponse = {
+    error : string,
+    description : string,
+    type : ResponseType
 }

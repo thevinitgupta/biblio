@@ -1,6 +1,5 @@
 "use client";
-import useButtonDisabled from '@/hooks/useButtonDisabled';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 
 interface AlertProps {
@@ -13,14 +12,30 @@ function Button({ children }: { children: React.ReactNode }) {
 }
 
 const ButtonBase = ({ message, loadingMessage, variantClass }: { message: string; loadingMessage : string; variantClass: string }) => {
-    const {pending} = useFormStatus();
-    const isDisabled = useButtonDisabled(pending);
+    const {pending, data} = useFormStatus();
+    const [disabled,setDisabled] = useState<boolean>(false);
 
   const baseClasses = "w-full btn";
   const className = `${baseClasses} ${variantClass}`;
 
+  useEffect(()=> {
+    let timerId: NodeJS.Timeout | null  = null;
+
+    if(pending) setDisabled(true);
+    else{
+      timerId = setTimeout(()=> {
+        setDisabled(false);
+      },700)
+    }
+
+    return () => {
+      timerId && clearTimeout(timerId)}
+  },[pending,data])
+
   return (
-    <button className={className} aria-disabled={pending} disabled={pending}>{pending ? loadingMessage:message}</button>
+    <button className={className} aria-disabled={disabled} disabled={disabled }>
+      {disabled ? <span className="loading loading-spinner text-neutral"></span>:message}
+    </button>
   );
 };
 

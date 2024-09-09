@@ -1,14 +1,18 @@
 "use client";
 
 import { loginUser } from "@/app/actions/loginUser";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
-import { LoggerLevel, ResponseType } from "../../../types/enums";
+import { ResponseType } from "../../../types/enums";
 import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import PasswordInput from "@/components/PasswordInput";
-import { loggingService } from "@/app/actions/logging";
+import useLogin from "@/hooks/useLogin";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { LoginFormData, LoginFormSchema } from "@/types/forms";
+import { ErrorResponse } from "@/types/errors";
+import { parseError } from "@/utils/errorParser";
 
 const initialState = {
     message: "",
@@ -17,35 +21,40 @@ const initialState = {
 };
 
 function Login() {
-    const [state, formAction] = useFormState(loginUser, initialState);
+    // const [state, formAction] = useFormState(loginUser, initialState);
     const router = useRouter();
+    const {isPending, isError, error : server_loginError, data,mutate : server_getUser} = useLogin();
+    const [error,setError] = useState<ErrorResponse | null>(null);
+    const {register,handleSubmit} = useForm<LoginFormData>();
 
-    
 
-    useEffect(() => {
-        let timer : ReturnType<typeof setTimeout> | null = null;
-        if (state.message != "") {
-            
-            if(state.responseType===ResponseType.success){
-                timer = setTimeout(() => {
-                    router.push("/dashboard");
-                }, 3500)
+    const onSubmit: SubmitHandler<LoginFormData> = (formData) => {
+        server_getUser(formData, {
+          onSuccess: (data) => {
+            if(data.type === ResponseType.success){
+              setTimeout(() => {
+                router.push("/dashboard");
+              }, 3500);
             }
-            
-        }
+          },
+          onError : () => {
+            setError(parseError(server_loginError));
+          }
+        });
+      };
 
-        return () => clearTimeout(timer|| undefined);
-    }, [state]);
+      
 
     return (
         <>
-            <form className="card-actions flex-col justify-center items-start gap-5 mt-5" action={formAction}>
+            <form className="card-actions flex-col justify-center items-start gap-5 mt-5" onSubmit={handleSubmit(onSubmit)}>
                 <label className="input input-bordered flex items-center gap-2 w-full">
-                    <input type="text" className="grow" placeholder="Email" name="email" />
+                    <input {...register('email')} type="text" className="grow" placeholder="Email" name="email" />
                 </label>
-                <PasswordInput/>
-                <Button.Primary message="Login" loadingMessage="Logging in" />
-                {state.message && <Alert.Default key={Date.now()} message={state.message} type={state.responseType} />}            
+                <PasswordInput register={register} />
+                <Button.Primary message="Login" />
+                {isError && error && <Alert.Default key={Date.now()} message={error.description} type={error.type} />}
+                {data!==undefined && <Alert.Default key={Date.now()} message={data.message} type={data.type} />}            
             </form>
         </>
     );

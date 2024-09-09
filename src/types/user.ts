@@ -1,6 +1,6 @@
 import { Post } from "./post";
 
-export interface User {
+export interface UserI {
     id : string;
     firstName : string;
     lastName : string;

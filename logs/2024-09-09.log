@@ -1,0 +1,62 @@
+09-09-2024 07:26:11.653 AM [development] error: Client Error : Too many re-renders. React limits the number of renders to prevent an infinite loop.
+09-09-2024 07:26:11.668 AM [development] error: Client Error : Too many re-renders. React limits the number of renders to prevent an infinite loop.
+09-09-2024 07:26:11.684 AM [development] error: Client Error : Too many re-renders. React limits the number of renders to prevent an infinite loop.
+09-09-2024 07:26:11.718 AM [development] error: Client Error : Too many re-renders. React limits the number of renders to prevent an infinite loop.
+09-09-2024 07:26:11.820 AM [development] error: Client Error : Global Error : undefined
+09-09-2024 07:26:11.836 AM [development] error: Client Error : Global Error : undefined
+09-09-2024 07:28:31.070 AM [development] error: Client Error : Too many re-renders. React limits the number of renders to prevent an infinite loop.
+09-09-2024 07:28:31.092 AM [development] error: Client Error : Too many re-renders. React limits the number of renders to prevent an infinite loop.
+09-09-2024 07:28:31.108 AM [development] error: Client Error : Too many re-renders. React limits the number of renders to prevent an infinite loop.
+09-09-2024 07:28:31.119 AM [development] error: Client Error : Too many re-renders. React limits the number of renders to prevent an infinite loop.
+09-09-2024 07:28:31.133 AM [development] error: Client Error : Global Error : undefined
+09-09-2024 07:28:31.193 AM [development] error: Client Error : Global Error : undefined
+09-09-2024 07:30:59.498 AM [development] error: Client Error : [
+  {
+    "code": "custom",
+    "message": "Password must contain at least one special character (!@#$%^&*).",
+    "path": [
+      "password"
+    ]
+  }
+]
+09-09-2024 07:30:59.516 AM [development] error: Client Error : [
+  {
+    "code": "custom",
+    "message": "Password must contain at least one special character (!@#$%^&*).",
+    "path": [
+      "password"
+    ]
+  }
+]
+09-09-2024 07:30:59.533 AM [development] error: Client Error : [
+  {
+    "code": "custom",
+    "message": "Password must contain at least one special character (!@#$%^&*).",
+    "path": [
+      "password"
+    ]
+  }
+]
+09-09-2024 07:30:59.573 AM [development] error: Client Error : [
+  {
+    "code": "custom",
+    "message": "Password must contain at least one special character (!@#$%^&*).",
+    "path": [
+      "password"
+    ]
+  }
+]
+09-09-2024 07:30:59.604 AM [development] error: Client Error : Global Error : undefined
+09-09-2024 07:30:59.640 AM [development] error: Client Error : Global Error : undefined
+09-09-2024 07:37:13.793 AM [development] warn: Client Warning : Error logging in user : thevinitgupta@gmail.com
+09-09-2024 07:37:18.597 AM [development] warn: Client Warning : Error : 
+09-09-2024 07:37:18.662 AM [development] warn: Client Warning : Error : 
+09-09-2024 07:41:03.075 AM [development] warn: Client Warning : Error logging in user : thevinitgupta@gmail.com
+09-09-2024 07:41:06.647 AM [development] warn: Client Warning : Error : 
+09-09-2024 07:41:06.668 AM [development] warn: Client Warning : Error : 
+09-09-2024 07:42:33.248 AM [development] warn: Client Warning : Error : 
+09-09-2024 07:42:33.325 AM [development] warn: Client Warning : Error : 
+09-09-2024 07:42:42.392 AM [development] warn: Client Warning : Error logging in user : thevinitgupta@gmail.com
+09-09-2024 07:42:56.526 AM [development] warn: Client Warning : Error : 
+09-09-2024 07:43:55.684 AM [development] warn: Client Warning : Error : 
+09-09-2024 07:44:07.760 AM [development] warn: Client Warning : Error : 

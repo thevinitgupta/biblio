@@ -1,5 +1,5 @@
 "use server";
-import getLogger from "@/services/logger.server";
+import getLogger from "@/services/logger";
 import { LoggerLevel } from "@/types/enums";
 
 

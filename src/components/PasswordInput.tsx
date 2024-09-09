@@ -1,7 +1,13 @@
 "use client";
+import { LoginFormData } from '@/types/forms';
 import React, { useState } from 'react'
+import { FieldValues, UseFormRegister, useForm } from 'react-hook-form';
+import { z } from 'zod';
 
-const PasswordInput = () => {
+
+const PasswordInput = ({register} : {
+    register : UseFormRegister<any>,
+}) => {
     const [passwordType, setPasswordType] = useState<"password" | "text">("password");
 
     const togglePasswordView = () => {
@@ -11,7 +17,7 @@ const PasswordInput = () => {
     return (
         <div className="join input input-bordered w-full gap-2">
             <label className="outline-none flex items-center gap-2">
-                <input type={passwordType === "password" ? "password" : "text"} placeholder="password" className="grow join-item" name="password" />
+                <input {...register('password')} type={passwordType === "password" ? "password" : "text"} placeholder="password" className="grow join-item" name="password" />
             </label>
             <label className="swap swap-rotate">
                 {/* this hidden checkbox controls the state */}

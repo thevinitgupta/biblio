@@ -1,15 +1,28 @@
+"use client";
 
-import { getSession } from '@/utils/sessions'
-import { redirect } from 'next/navigation';
+import DetailsSkeleton from '@/components/DetailsSkeleton';
+import ProfileSkeleton from '@/components/DetailsSkeleton';
+import ProfileImage from '@/components/ProfileImage';
+import UserDetails from '@/components/UserDetails';
+import useFetchUser from '@/hooks/useFetchUser';
+import { ResponseType } from '@/types/enums';
+import { useQueryClient } from '@tanstack/react-query';
 import React from 'react'
 
-const Dashboard = async () => {
-    const session = await getSession();
+const Dashboard = () => {
+    // const session = await getSession();
+    
 
+  
 
+  
+  
     // if(!session) redirect("/auth")
   return (
-    <div>Welcome {session? "thevinitgupta@gmail.com" : "User"}!</div>
+    <>
+    <ProfileImage />
+    <UserDetails/>
+    </>
   )
 }
 

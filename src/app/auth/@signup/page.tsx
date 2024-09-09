@@ -3,10 +3,8 @@
 import { registerUser } from "@/app/actions/register";
 import Alert from "@/components/Alert";
 import Button from "@/components/Button";
-import { useEffect, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { ResponseType } from "../../../types/enums";
-import { checkType } from "@/utils/responseTypeCheck";
 import PasswordInput from "@/components/PasswordInput";
 
 const initialState = {
@@ -18,14 +16,6 @@ const initialState = {
 function Signup() {
     const [state, formAction] = useFormState(registerUser, initialState);
 
-
-    useEffect(() => {
-        if (state.message!="") {
-            
-            // setAlertType(checkType(state.message));
-            // state.message = state.message.split("|").toSpliced(-1,1).join(" ");
-        }
-      }, [state]);
     return (
         <>
 

@@ -8,6 +8,8 @@ export const checkError : (error : Error) => applicationErrors = (error) => {
         errorType = applicationErrors.HTTP_ERROR;
     } else if (error.message.includes('Permission Denied')) {
         errorType = applicationErrors.NO_PERMISSION_ERROR;
+    } else if (error.message.includes('No User')) {
+        errorType = applicationErrors.NO_DATA_ERROR;
     } 
     return errorType;
 }
