@@ -26,7 +26,7 @@ const useFetchUser = () => {
                 "Content-Type": "application/json",
                 "Accepts" : "text/plain",
                 "Authorization": `Basic ${token ? token : ""}`,
-                "getSetCookie": "refresh-token"
+                "getSetCookie": "refreshToken"
             },
             
             credentials : "include"
