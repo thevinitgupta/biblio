@@ -12,7 +12,9 @@ import useLogin from "@/hooks/useLogin";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoginFormData, LoginFormSchema } from "@/types/forms";
 import { ErrorResponse } from "@/types/errors";
-import { parseError } from "@/utils/errorParser";
+import { parseError, parseServerError } from "@/utils/errorParser";
+import {AxiosResponse, AxiosError} from  'axios';
+import { LoginResponseType } from "@/types/authentication";
 
 const initialState = {
     message: "",
@@ -37,8 +39,13 @@ function Login() {
               }, 3500);
             }
           },
-          onError : () => {
-            setError(parseError(server_loginError));
+          onError : (lError) => {
+            let parsedError = parseError(lError);
+            if(parsedError===null){
+              parsedError = parseServerError(lError);
+            }
+            setError(parsedError);
+            // setError();
           }
         });
       };

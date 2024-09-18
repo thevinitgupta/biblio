@@ -16,3 +16,14 @@ export type ErrorResponse = {
     description : string,
     type : ResponseType
 }
+
+
+export type ServerErrorResponseType = {
+    status : string,
+    response : {
+        data : {
+            error : string,
+            description : string,
+        }
+    }
+}
