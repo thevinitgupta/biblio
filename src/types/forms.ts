@@ -23,8 +23,8 @@ export type LoginFormData = z.infer<typeof LoginFormSchema>;
 
 
 export const SignupFormSchema = z.object({
-    name : z.string().min(4, "Name should be at-least 4 characters")
-    .includes(" ",{message : "Please enter your complete name"}),
+    firstName : z.string().min(4, "First Name should be at-least 4 characters"),
+    lastName : z.string().min(1, "Last Name should be at-least 1 character"),
     password: passwordSchema,
     email: z.string().email("Invalid Email"),
 });

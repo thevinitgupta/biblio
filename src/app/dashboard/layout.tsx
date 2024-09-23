@@ -1,9 +1,9 @@
 "use client";
 import React, { Suspense } from 'react'
 
-const DashboardLayout = ({children, details, posts} : {
+const DashboardLayout = ({children, UserDetails, posts} : {
     children: React.ReactNode,
-    details: React.ReactNode,
+    UserDetails: React.ReactNode,
     posts : React.ReactNode
 }) => {
 
@@ -11,6 +11,7 @@ const DashboardLayout = ({children, details, posts} : {
     <main className="flex h-screen flex-col items-center justify-center px-16 py-8">
       Profile
         {children}
+        {UserDetails}
     </main>
   )
 }

@@ -21,7 +21,7 @@ const Dashboard = () => {
   return (
     <>
     <ProfileImage />
-    <UserDetails/>
+    {/* TODO : MOVE Profile Image to a Header Section for the Dashboard which is common for All Types of Users */}
     </>
   )
 }
