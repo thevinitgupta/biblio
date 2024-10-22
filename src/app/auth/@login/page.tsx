@@ -59,7 +59,7 @@ function Login() {
                     <input {...register('email')} type="text" className="grow" placeholder="Email" name="email" />
                 </label>
                 <PasswordInput register={register} />
-                <Button.Primary message="Login" />
+                <Button.Primary message="Login" type="submit" />
                 {isError && error && <Alert.Default key={Date.now()} message={error.description} type={error.type} />}
                 {data!==undefined && <Alert.Default key={Date.now()} message={data.message} type={data.type} />}            
             </form>

@@ -1,0 +1,54 @@
+02-10-2024 10:38:52.811 AM [development] error: Client Error : Authentication Failed
+02-10-2024 10:38:52.834 AM [development] error: Client Error : Authentication Failed
+02-10-2024 10:39:43.278 AM [development] error: Client Error : Authentication Failed
+02-10-2024 10:39:43.293 AM [development] error: Client Error : Authentication Failed
+02-10-2024 12:49:13.623 PM [development] error: Client Error : FroalaEditor is not defined
+02-10-2024 12:49:15.615 PM [development] error: Client Error : FroalaEditor is not defined
+02-10-2024 12:49:17.832 PM [development] error: Client Error : FroalaEditor is not defined
+02-10-2024 12:49:19.276 PM [development] error: Client Error : FroalaEditor is not defined
+02-10-2024 01:56:49.858 PM [development] error: Client Error : attr is not defined
+02-10-2024 01:56:49.927 PM [development] error: Client Error : attr is not defined
+02-10-2024 01:56:51.201 PM [development] error: Client Error : attrib is not defined
+02-10-2024 01:56:51.343 PM [development] error: Client Error : attrib is not defined
+02-10-2024 01:57:16.586 PM [development] error: Client Error : at is not defined
+02-10-2024 01:57:16.691 PM [development] error: Client Error : at is not defined
+02-10-2024 02:28:38.139 PM [development] error: Client Error : Image with src "https://img.icons8.com/ios-glyphs/30/horizontal-line.png"" is missing required "width" property.
+02-10-2024 02:28:38.390 PM [development] error: Client Error : Image with src "https://img.icons8.com/ios-glyphs/30/horizontal-line.png"" is missing required "width" property.
+02-10-2024 02:28:45.202 PM [development] error: Client Error : Image with src "https://img.icons8.com/ios-glyphs/30/horizontal-line.png"" is missing required "width" property.
+02-10-2024 02:28:45.254 PM [development] error: Client Error : Image with src "https://img.icons8.com/ios-glyphs/30/horizontal-line.png"" is missing required "width" property.
+02-10-2024 02:29:14.603 PM [development] error: Client Error : Invalid src prop (https://img.icons8.com/ios-glyphs/30/horizontal-line.png") on `next/image`, hostname "img.icons8.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+02-10-2024 02:29:14.778 PM [development] error: Client Error : Invalid src prop (https://img.icons8.com/ios-glyphs/30/horizontal-line.png") on `next/image`, hostname "img.icons8.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+02-10-2024 04:54:50.160 PM [development] error: Client Error : MenuBar is not defined
+02-10-2024 04:54:50.239 PM [development] error: Client Error : MenuBar is not defined
+02-10-2024 05:01:01.498 PM [development] error: Client Error : editor is undefined
+02-10-2024 05:01:01.704 PM [development] error: Client Error : editor is undefined
+02-10-2024 05:01:05.447 PM [development] error: Client Error : editor is null
+02-10-2024 05:01:05.508 PM [development] error: Client Error : editor is null
+02-10-2024 05:01:15.499 PM [development] error: Client Error : editor is null
+02-10-2024 05:01:15.541 PM [development] error: Client Error : editor is null
+02-10-2024 05:01:21.014 PM [development] error: Client Error : editor is null
+02-10-2024 05:01:21.136 PM [development] error: Client Error : editor is null
+02-10-2024 05:23:39.677 PM [development] error: Client Error : CharacterCountComponent is not defined
+02-10-2024 05:23:40.114 PM [development] error: Client Error : CharacterCountComponent is not defined
+02-10-2024 05:23:47.572 PM [development] error: Client Error : CharacterCount is not defined
+02-10-2024 05:23:48.474 PM [development] error: Client Error : CharacterCount is not defined
+02-10-2024 05:23:50.760 PM [development] error: Client Error : CharacterCoun is not defined
+02-10-2024 05:23:54.911 PM [development] error: Client Error : CharacterCoun is not defined
+02-10-2024 06:28:16.538 PM [development] error: Client Error : useEff is not defined
+02-10-2024 06:28:17.139 PM [development] error: Client Error : useEff is not defined
+02-10-2024 06:28:37.402 PM [development] error: Client Error : edi is not defined
+02-10-2024 06:28:37.421 PM [development] error: Client Error : edi is not defined
+02-10-2024 06:33:17.626 PM [development] error: Client Error : edi is not defined
+02-10-2024 06:33:17.660 PM [development] error: Client Error : edi is not defined
+02-10-2024 06:34:03.299 PM [development] error: Client Error : editor.getJson is not a function
+02-10-2024 06:34:06.453 PM [development] error: Client Error : editor.getJson is not a function
+02-10-2024 06:34:08.021 PM [development] error: Client Error : editor is not a function
+02-10-2024 06:34:08.037 PM [development] error: Client Error : editor is not a function
+02-10-2024 06:34:08.089 PM [development] error: Client Error : App Crashed, caught in Global Error Handler
+02-10-2024 06:34:08.107 PM [development] error: Client Error : App Crashed, caught in Global Error Handler
+02-10-2024 06:36:03.451 PM [development] error: Client Error : ed is not defined
+02-10-2024 06:36:03.628 PM [development] error: Client Error : ed is not defined
+02-10-2024 06:55:03.045 PM [development] error: Client Error : setContent is not a function
+02-10-2024 06:55:03.763 PM [development] error: Client Error : setContent is not a function

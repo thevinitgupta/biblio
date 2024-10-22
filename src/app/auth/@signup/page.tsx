@@ -20,7 +20,6 @@ const initialState = {
 
 
 function Signup() {
-    const [state, formAction] = useFormState(registerUser, initialState);
     const { isPending, isError, error: server_signupError, data, mutate: server_getUser } = useSignup();
     const { register, handleSubmit } = useForm<SignupFormData>();
     const [error, setError] = useState<ErrorResponse | null>(null);

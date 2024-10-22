@@ -24,6 +24,7 @@ export type ServerErrorResponseType = {
         data : {
             error : string,
             description : string,
+            status : string
         }
     }
 }

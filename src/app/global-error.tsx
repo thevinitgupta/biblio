@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { loggingService } from './actions/logging';
 import { LoggerLevel } from '@/types/enums';
+import { useEffect } from 'react';
+import useLogger from '@/hooks/useLogger';
 
 const inter = Inter({ subsets: ["latin"] });
 export default function GlobalError({
@@ -13,7 +15,8 @@ export default function GlobalError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  loggingService("Global Error : "+error.digest, LoggerLevel.error);
+  
+  const logger = useLogger(error.digest || 'App Crashed, caught in Global Error Handler', LoggerLevel.error)
   return (
     <html data-theme="noir" lang="en">
       <body className={inter.className}>

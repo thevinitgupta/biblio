@@ -30,3 +30,11 @@ export const SignupFormSchema = z.object({
 });
 
 export type SignupFormData = z.infer<typeof SignupFormSchema>;
+
+export const CreatePostSchema = z.object({
+  title: z.string().min(15, "Title should be at-least 15 characters"),
+  content: z.string().min(150, "Content should be at-least 150 characters")
+})
+
+
+export type CreatePostData = z.infer<typeof CreatePostSchema>;

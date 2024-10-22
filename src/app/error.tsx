@@ -3,10 +3,14 @@
 import Image from "next/image";
 import Error from "next/error";
 import { ServerDownException } from "../exceptions/ServerDownException";
+import useLogger from "@/hooks/useLogger";
+import { LoggerLevel } from "@/types/enums";
 
 const RootError = ({error, reset} : {error : Error & {digest : string}, reset : () => void}) => {
     console.log("Error at Root : ", error, error instanceof ServerDownException);
     const {props} = error;
+
+    useLogger(props.title || 'Server Down', LoggerLevel.warn)
     return (
         <section className="hero min-h-screen bg-base-100">
             <div className="hero-content flex-col justify-start lg:flex-row lg:gap-14">
