@@ -1,55 +1,67 @@
-import { loggingService } from "@/app/actions/logging";
-import { loginUser } from "@/app/actions/loginUser";
-import { LoginResponseType } from "@/types/authentication";
-import { ProfileDataResponseType, ServerResponseType } from "@/types/common";
-import { ResponseType, LoggerLevel } from "@/types/enums";
-import { applicationErrors } from "@/types/errors";
-import { LoginFormData, LoginFormSchema } from "@/types/forms";
+import { ProfileDataResponseType } from "@/types/common";
+import { ResponseType } from "@/types/enums";
+import { ErrorResponse } from "@/types/errors";
 import { UserI } from "@/types/user";
-import { checkError } from "@/utils/errorChecker";
-import { parseError } from "@/utils/errorParser";
-import checkServerResponse from "@/utils/serverResponseChecker";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { z } from "zod";
+import { privateAccessClient } from "@/utils/axiosUtil";
+import useGlobalStore from "@/utils/zustand";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 
+// Define the return type for the useFetchUser  hook
+type UseFetchUser = 
+  { data: ProfileDataResponseType | null; error: ErrorResponse 
+   | null; isLoading: boolean };
 
-const useFetchUser = () => {
+const useFetchUser  = (): UseFetchUser => {
     const queryClient = useQueryClient();
-    return useQuery({
+    const { sessionToken } = useGlobalStore();
+    
+    const { data, error, isLoading } = useQuery<ProfileDataResponseType>({
         queryKey: ["profile"],
-        queryFn: async () : Promise< ProfileDataResponseType>=> {
-        const token = queryClient.getQueryData(['access-token']);  //"eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCaWJsaW8iLCJzdWIiOiJBY2Nlc3MtVG9rZW4iLCJ1c2VybmFtZSI6InRoZXZpbml0Z3VwdGFhQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiY3JlYXRlOmNvbW1lbnQsY3JlYXRlOnBvc3QsZGVsZXRlOmNvbW1lbnQsZGVsZXRlOnBvc3QsZGVsZXRlOnVzZXIscmVhZDpjb21tZW50LHJlYWQ6cG9zdCxyZWFkOnVzZXIsdXBkYXRlOmNvbW1lbnQsdXBkYXRlOnBvc3QsdXBkYXRlOnVzZXIiLCJpYXQiOjE3MjU0MTM2ODMsImV4cCI6MTcyNTQxMzc0M30.GM17fv-S8VqUA2AWgdzrtY2syb1Y7FpSQWkLdLrMN-A";
-        
-        const fetchUserResponse = await fetch("http://localhost:8080/user", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Accepts" : "text/plain",
-                "Authorization": `Basic ${token ? token : ""}`,
-                "getSetCookie": "refreshToken"
-            },
-            
-            credentials : "include"
+        queryFn: async (): Promise<ProfileDataResponseType> => {
+            let token = queryClient.getQueryData(['access-token']) || sessionToken || "";
+            const headers = {
+                Authorization: `Bearer ${token}`
+            };
 
-        });
-        // console.log("User Details : ", fetchUserResponse)
-        
-        // Handle Error Server responses
-        if(!fetchUserResponse.ok) return await checkServerResponse(fetchUserResponse, {token : null, data : null}) as ProfileDataResponseType;
-
-        const fetchUserResponseData  = await fetchUserResponse.json() as UserI;
-
-        return {message : `Success`, data : fetchUserResponseData , type : ResponseType.success};
-
+            try {
+                const fetchUser  = await privateAccessClient.get("/user", {
+                    headers
+                });
+                return {
+                    message: "Success",
+                    data: fetchUser .data as UserI,
+                    type: ResponseType.success
+                };
+            } catch (err) {
+                const errorResp = (err as AxiosError).response?.data as ErrorResponse;
+                console.log("Error Resp for Profile Data : ",errorResp);
+                // Handle error and throw it to be caught by useQuery
+                throw new Error(JSON.stringify(errorResp));
+            }
         },
+        retry: false,
+        retryDelay: 25,
+        refetchOnWindowFocus: false,
+        throwOnError: false,
+    });
 
-        retry : false,
-        retryDelay : 60,
-        refetchOnWindowFocus : false,
-        throwOnError : true,
-        
-        
-    })
+    // Check if an error occurred and return appropriate data structure
+    if (error) {
+        const errorResponse = JSON.parse(error.message) as ErrorResponse;
+        console.log("ERROR RESPONSE PRofile data : ", errorResponse)
+        return {
+            data: null,
+            error: {
+                error: "Failed to fetch user data",
+                description: errorResponse.description || "An unexpected error occurred.",
+                type: ResponseType.error
+            },
+            isLoading: false,
+        };
+    }
+
+    return { data: data || null, error: error || null, isLoading };
 }
 
-export default useFetchUser;
+export default useFetchUser ;

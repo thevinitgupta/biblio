@@ -52,6 +52,7 @@ const CreatePost = () => {
           if (parsedError === null) {
               parsedError = parseServerError(lError);
           }
+          console.log("Parsed Error : ", parsedError);
           setError(parsedError);
           // setError();
       }

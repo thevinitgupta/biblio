@@ -7,12 +7,14 @@ import { LoginFormData, LoginFormSchema } from "@/types/forms";
 import { authClient } from "@/utils/axiosUtil";
 
 import { parseError } from "@/utils/errorParser";
+import useGlobalStore from "@/utils/zustand";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {AxiosResponse} from 'axios';
 
 
 const useLogin = () => {
     const queryClient = useQueryClient();
+    const {setSession} = useGlobalStore();
     return useMutation({
         mutationKey: ["login"],
         mutationFn: async (values: any) => {
@@ -33,6 +35,7 @@ const useLogin = () => {
             ['access-token'],
             () => token
         ); 
+        setSession(token);
         return {message : `Login Successful`, token, type : ResponseType.success};
 
         },

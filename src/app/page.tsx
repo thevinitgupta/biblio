@@ -13,7 +13,6 @@ export default function Home() {
   // console.log(healthCheckData)
   return (
 
-      <DaisyThemeProvider>
         <main className="flex min-h-screen flex-col items-center justify-start px-16 py-8">
           {
             healthCheckData.loading ?
@@ -24,6 +23,5 @@ export default function Home() {
               </>
           }
         </main>
-      </DaisyThemeProvider>
   );
 }

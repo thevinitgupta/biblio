@@ -1,31 +1,36 @@
 "use client";
 import { UserI } from '@/types/user';
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import useFetchUser from '@/hooks/useFetchUser';
-import { useQueryClient } from '@tanstack/react-query';
-import { ResponseType } from '@/types/enums';
 import DetailsSkeleton from '@/components/DetailsSkeleton';
 
-const UserDetails = () => {
-    const {isPending, isLoading, isFetching,status,data, isError, error} = useFetchUser();
-    console.log(status,data); 
-  const queryClient = useQueryClient();
-  const token = queryClient.getQueryData(['access-token']);
-  console.log(token);
-    if(isLoading) {
-        return <DetailsSkeleton lines={2}/>
-    }
+const UserDetailsPage = () => {
+  const { data, error, isLoading } = useFetchUser();
 
-    if(data?.type!==ResponseType.success || isError) {
-        console.log("Error : ", error || data?.message)
-        return (
-          <div>Cannot access Profile page!</div>
-        )
-      }
+  if (isLoading) {
+      return <DetailsSkeleton lines={2}/>;
+  }
+
+  if (error) {
+      return (
+          <div>
+              <h2>Error fetching user details</h2>
+              <p>{error.description || "An unexpected error occurred."}</p>
+          </div>
+      );
+  }
+
   return (
-    <div>Welcome, {data.data.firstName}</div>
-  )
-}
-
-export default UserDetails
+      <div>
+          <h1>User Details</h1>
+          {data && (
+              < div>
+                  <p><strong>Name:</strong> {data.data.firstName}</p>
+                  <p><strong>Email:</strong> {data.data.email}</p>
+              </div>
+          )}
+      </div>
+  );
+};
+export default UserDetailsPage

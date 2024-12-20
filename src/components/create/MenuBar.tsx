@@ -1,5 +1,8 @@
+"use client";
 import { Editor } from '@tiptap/react'
 import { CharacterCount } from './CharacterCount'
+import useGlobalStore from '@/utils/zustand';
+import { Theme } from '@/utils/zustand/themeStore';
 
 const MenuBar = ({ editor }: {
     editor: Editor | null
@@ -7,6 +10,8 @@ const MenuBar = ({ editor }: {
     if (!editor) {
         return null
     }
+
+    const {theme} = useGlobalStore();
 
     return (
         <div className="control-group join-item w-full px-8 py-4 flex justify-between items-center sticky top-0 left-0 z-30 bg-base-100">
@@ -30,7 +35,7 @@ const MenuBar = ({ editor }: {
 
                 </button>
                 <button type="button" onClick={() => editor.chain().focus().setParagraph().run()} className={editor.isActive('paragraph') ? 'is-active' : ''}>
-                    <img className={`opacity-75 size-4 lg:size-7`} width="16" height="16" src="https://img.icons8.com/material-outlined/24/FFFFFF/paragraph.png" alt="paragraph" />
+                    <img className={`opacity-75 size-4 lg:size-7`} width="16" height="16" src={`https://img.icons8.com/material-outlined/24/${theme==="noir" ? "fffcff" : "021127ff"}/paragraph.png` }alt="paragraph" />
 
 
                 </button>
@@ -54,7 +59,7 @@ const MenuBar = ({ editor }: {
 
                 </button>
                 <button type="button" onClick={() => editor.chain().focus().setHorizontalRule().run()} className={editor.isActive('strike') ? 'is-active' : ''}>
-                    <img className={`opacity-75 size-4 lg:size-7`} src="https://img.icons8.com/ios-glyphs/30/FFFFFF/horizontal-line.png" alt="horizontal-line" />
+                    <img className={`opacity-75 size-4 lg:size-7`} src={`https://img.icons8.com/ios-glyphs/30/${theme==="noir" ? "fffcff" : "021127ff"}/horizontal-line.png`} alt="horizontal-line" />
                 </button>
 
                 <div className="dropdown dropdown-hover">

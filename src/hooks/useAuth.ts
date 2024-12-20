@@ -9,7 +9,7 @@ const useAuth = () => {
         queryFn : () => {
             // console.log("USE AUTH USED!")
             // // throw new Error("Authentication Failed");
-            // return "";
+            return "";
         },
         throwOnError : true
     })

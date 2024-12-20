@@ -1,16 +1,23 @@
 "use client"
 import { ResponseType } from '@/types/enums';
 import { applicationErrors } from '@/types/errors';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import { z } from 'zod';
 import { checkError } from './errorChecker';
+import Alert from '@/components/Alert';
 
 
 const TanstackQueryProvider = ({children} : {
     children: React.ReactNode
 }) => {
-    const [queryClient] = useState(new QueryClient());
+    const [queryClient] = useState(new QueryClient({
+      queryCache : new QueryCache({
+        onError : (error) => {
+          return <Alert.Error message={error.message} />
+        }
+      })
+    }));
 
   return (
     <QueryClientProvider client={queryClient}>

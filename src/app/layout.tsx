@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import TanstackQueryProvider from "@/utils/TanstackQueryProvider";
+import useGlobalStore from "@/utils/zustand";
+import DaisyThemeProvider from "@/hooks/useDaisyTheme";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,12 +18,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
-    <html data-theme="noir" lang="en">
+    <html lang="en">
       <body className={inter.className}>
+        <DaisyThemeProvider>
         <TanstackQueryProvider>
           {children}
         </TanstackQueryProvider>
+        </DaisyThemeProvider>
       </body>
     </html>
   );

@@ -1,25 +1,17 @@
 "use client";
-import React, { createContext } from "react";
-
-interface DaisyThemeContextProps {
-    theme : string,
-    setTheme : React.Dispatch<React.SetStateAction<string>>
-}
-
-export const DaisyThemeContext = createContext<DaisyThemeContextProps | undefined>(undefined);
-
+import useGlobalStore from "@/utils/zustand";
+import React from "react";
 export interface DaisyThemeProviderProps {
     children : React.ReactNode,
-    applyTheme? : string,
 }
 
 
-const DaisyThemeProvider = ({children, applyTheme = "ivory"} : DaisyThemeProviderProps) => {
-    const [theme, setTheme] = React.useState(applyTheme);
+const DaisyThemeProvider = ({children} : DaisyThemeProviderProps) => {
+    const {theme} = useGlobalStore();
     return (
-        <DaisyThemeContext.Provider value={{theme,setTheme}}>
+        <div data-theme={theme}>
             {children}
-        </DaisyThemeContext.Provider>
+        </div>
     );
 }
 

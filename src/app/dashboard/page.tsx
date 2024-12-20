@@ -10,14 +10,6 @@ import { useQueryClient } from '@tanstack/react-query';
 import React from 'react'
 
 const Dashboard = () => {
-    // const session = await getSession();
-    
-
-  
-
-  
-  
-    // if(!session) redirect("/auth")
   return (
     <>
     <ProfileImage />

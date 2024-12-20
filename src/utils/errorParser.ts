@@ -18,9 +18,13 @@ export const parseError = (error : any) : ErrorResponse | null => {
     return null;
 }
 
-export const parseServerError = (error : any) : ErrorResponse | null => {
+export const parseServerError = (error : any) : ErrorResponse => {
     const serverError = error as ServerErrorResponseType;
-    if([401,403,400].includes(parseInt(serverError.status))){
+    if([403].includes(parseInt(serverError.status))){
+        loggingService("User unauthorized to proceed", LoggerLevel.error);
+        return { error : "Unauthorized Access" ,description: "Please login to proceed" , type: ResponseType.error };
+    }
+    if([401,400].includes(parseInt(serverError.status))){
         loggingService(serverError.response.data.description, LoggerLevel.error);
         return { error : serverError.response.data.error ,description: serverError.response.data.description , type: ResponseType.error };
     }
@@ -35,5 +39,4 @@ export const parseServerError = (error : any) : ErrorResponse | null => {
         description: "Something unexpected happened :"+serverError.response.data.description === null ? "" : serverError.response.data.description , 
         type: ResponseType.error };
     }
-    return null;
 }

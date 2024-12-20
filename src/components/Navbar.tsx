@@ -10,7 +10,7 @@ const Navbar = () => {
     const router = useRouter();
     useEffect(() => {
         setTheme(value => {
-            return window.localStorage.getItem("daisy-theme") || "ivory";
+            return window.localStorage.getItem("daisy-theme") || "noir";
         });
 
     }, [])
