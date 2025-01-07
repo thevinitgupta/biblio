@@ -10,14 +10,17 @@ import { ResponseType } from '@/types/enums';
 import { ErrorResponse } from '@/types/errors';
 import { CreatePostData } from '@/types/forms';
 import { parseError, parseServerError } from '@/utils/errorParser';
+import useGlobalStore from '@/utils/zustand';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useController, useForm } from 'react-hook-form';
 
 const CreatePost = () => {
+  const {sessionToken} = useGlobalStore();
   const router = useRouter();
   const [postBody, setPostBody] = useState('');
+  const [displayText, setDisplayText] = useState('');
   const {register, handleSubmit, control, reset } = useForm<CreatePostData>({
     mode : "onSubmit"
   });
@@ -26,7 +29,10 @@ const CreatePost = () => {
 
   const { data: token, isLoading : tokenLoading, isError : tokenError, error: auth_error } = useAuth();
   
-  const {isPending : createPostPending, isError : server_createPostError, data : createPostData , mutate : server_createPost } = useCreatePost();
+  const {isPending : createPostPending, 
+    isError : server_createPostError, 
+    data : createPostData , 
+    mutate : server_createPost } = useCreatePost();
 
   const {field : { onChange, value, ref}} = useController({
     control : control,
@@ -45,6 +51,7 @@ const CreatePost = () => {
       onSuccess: (data) => {
           if (data.type === ResponseType.success) {
             reset();
+            router.push("/dashboard");
           }
       },
       onError: (lError) => {
@@ -68,9 +75,11 @@ const CreatePost = () => {
     setError(null);
   };
 
-  // useEffect(()=> {
-  //   console.log("POST BODY : ", postBody)
-  // },[postBody])
+  useEffect(()=> {
+    if(!sessionToken) {
+      router.replace("/auth");
+    }
+  },[])
 
   return (
 
@@ -81,7 +90,7 @@ const CreatePost = () => {
        onKeyDown={handleKeyDown} >
         <Title register={register} />
         <Editor initialValue={''}
-        onChange={onChange} setContent={setPostBody}/>
+        onChange={onChange} setContent={setPostBody} setDisplayText={setDisplayText}/>
         // <textarea {...register('content')} value={postBody} className={`hidden h-0 w-0`} />
         <div className={`w-full grid place-items-center fixed bottom-0 left-0 bg-base-100 shadow-md px-16 py-6`}>
         {server_createPostError && error &&

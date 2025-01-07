@@ -5,8 +5,8 @@ import React, { PropsWithChildren } from 'react'
 const PostsLayout = ({ children }: PropsWithChildren) => {
     return (
         <DaisyThemeProvider>
-            <div className={`h-screen max-w-screen `}>
-                <ul className="w-full menu bg-base-200 lg:menu-horizontal rounded-box justify-around">
+            <div className={`flex flex-col items-start justify-start px-0 md:px-8 lg:px-16 py-8 bg-base-100`}>
+                {/* <ul className="w-full menu bg-base-200 lg:menu-horizontal rounded-box justify-around">
                     <li>
                         <Link href="/post/post-1">
                             <svg
@@ -49,7 +49,7 @@ const PostsLayout = ({ children }: PropsWithChildren) => {
                             <span className="badge badge-xs badge-info"></span>
                         </a>
                     </li>
-                </ul>
+                </ul> */}
 
                 {children}
             </div>

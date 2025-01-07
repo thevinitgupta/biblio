@@ -1,4 +1,5 @@
 import { ResponseType } from "./enums"
+import { Post } from "./post"
 import { UserI } from "./user"
 
 export type ServerResponseType = {
@@ -18,4 +19,11 @@ export type ImageDataResponseType = {
     type : ResponseType,
     data : string
 }
+
+export type PostDataResponseType = {
+    message : string,
+    type : ResponseType,
+    data : Array<Post>
+}
+
 

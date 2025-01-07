@@ -33,8 +33,22 @@ export type SignupFormData = z.infer<typeof SignupFormSchema>;
 
 export const CreatePostSchema = z.object({
   title: z.string().min(15, "Title should be at-least 15 characters"),
-  content: z.string().min(150, "Content should be at-least 150 characters")
+  content: z.string().min(150, "Content should be at-least 150 characters"),
 })
 
 
 export type CreatePostData = z.infer<typeof CreatePostSchema>;
+
+const MAX_FILE_SIZE = 2097152;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
+
+
+export const UploadProfileImageSchema = z.object({
+  file : z.any()
+  .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 2MB.`)
+  .refine(
+    (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+    "Only .jpg, .jpeg and .png formats are supported."
+  )
+});
+export type UploadProfileImageData = z.infer<typeof UploadProfileImageSchema>;

@@ -1,12 +1,10 @@
 import { loggingService } from "@/app/actions/logging";
-
-import { LoginResponseType } from "@/types/authentication";
+;
 import { ResponseType, LoggerLevel } from "@/types/enums";
 
 import { CreatePostData, CreatePostSchema, LoginFormData, LoginFormSchema, SignupFormData, SignupFormSchema } from "@/types/forms";
 import { authClient, axios, privateAccessClient } from "@/utils/axiosUtil";
 
-import { parseError } from "@/utils/errorParser";
 import useGlobalStore from "@/utils/zustand";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {AxiosResponse} from 'axios';
@@ -51,7 +49,7 @@ const useCreatePost = () => {
         }
 
         console.log("Create Post headers : ",headers);
-        const createPostResponse : AxiosResponse = await privateAccessClient.post('http://localhost:8080/posts/create',createPostData, {
+        const createPostResponse : AxiosResponse = await privateAccessClient.post('/posts/create',createPostData, {
             headers : headers    
         });
             console.log("Create Post Response : ",createPostResponse)

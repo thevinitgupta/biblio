@@ -52,7 +52,7 @@ const privateAccessClient = axios.create({
     baseURL : "http://localhost:8080/",
     headers : {
         "getSetCookie": "refreshToken",
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
         "Accepts" : "application/json",
     },
     withCredentials: true 

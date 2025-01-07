@@ -15,21 +15,24 @@ const useFetchImage = () => {
     const queryClient = useQueryClient();
     const {sessionToken} = useGlobalStore();
     return useQuery({
-        queryKey: ["image"],
+        queryKey: ["profile-image"],
         queryFn: async (): Promise<ImageDataResponseType> => {
             let token = queryClient.getQueryData(['access-token']);
             token = token || sessionToken || "";
             const headers = {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
             };
 
-            const fetchUserResponse = await privateAccessClient.get("/posts", {
-                headers
-            });
-
+            const fetchUserResponse = await privateAccessClient.get("/user/profileImage", {
+                headers,
+                responseType : "blob"
+            },);
+            const url = window.URL || window.webkitURL;
+            const blobUrl = url.createObjectURL(fetchUserResponse.data);
+            
             return {
                 message: "Success Image",
-                data: fetchUserResponse.data,
+                data: blobUrl,
                 type: ResponseType.success
             };
 

@@ -7,7 +7,7 @@ const CreatePostLayout = ({ children }: PropsWithChildren) => {
     return (
         <DaisyThemeProvider>
         <main className="flex min-h-screen flex-col items-center justify-start px-16 py-8 gap-12">
-            <CreatePostNavbar/>
+            {/* <CreatePostNavbar/> */}
             {children}
         </main>
         </DaisyThemeProvider>

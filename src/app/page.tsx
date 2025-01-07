@@ -13,12 +13,12 @@ export default function Home() {
   // console.log(healthCheckData)
   return (
 
-        <main className="flex min-h-screen flex-col items-center justify-start px-16 py-8">
+        <main className="flex min-h-screen w-full flex-col items-center justify-start px-16 py-8">
           {
             healthCheckData.loading ?
               <Skeleton /> :
               <>
-                <Navbar />
+                {/* <Navbar /> */}
                 <Bento />
               </>
           }

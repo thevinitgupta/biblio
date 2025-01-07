@@ -7,3 +7,6 @@ export interface UserI {
     email : string;
     posts : Post[];
 }
+
+
+export type PostsI = Array<Post>

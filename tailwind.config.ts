@@ -45,6 +45,7 @@ const config: Config = {
         },
         noir: {
           "primary": "#fffcff",
+          "light-primary": "#fffcff40",
           "--primary": "#fffcff",
           "--primary/65": "#fffcff65",
           "secondary": "#3f3727ff",

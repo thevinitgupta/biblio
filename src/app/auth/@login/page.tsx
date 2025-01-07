@@ -1,8 +1,6 @@
 "use client";
 
-import { loginUser } from "@/app/actions/loginUser";
-import { useEffect, useState } from "react";
-import { useFormState } from "react-dom";
+import { useState } from "react";
 import { ResponseType } from "../../../types/enums";
 import Alert from "@/components/Alert";
 import Button from "@/components/Button";
@@ -10,11 +8,9 @@ import { useRouter } from "next/navigation";
 import PasswordInput from "@/components/PasswordInput";
 import useLogin from "@/hooks/useLogin";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginFormData, LoginFormSchema } from "@/types/forms";
+import { LoginFormData } from "@/types/forms";
 import { ErrorResponse } from "@/types/errors";
 import { parseError, parseServerError } from "@/utils/errorParser";
-import {AxiosResponse, AxiosError} from  'axios';
-import { LoginResponseType } from "@/types/authentication";
 
 const initialState = {
     message: "",

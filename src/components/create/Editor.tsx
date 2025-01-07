@@ -38,16 +38,20 @@ Oh devs just wanna have fun<br>
 (devs, they wanna, wanna have fun, devs wanna have)
 </p>`;
 
-const Editor = ({setContent, initialValue, onChange} : {
+const Editor = ({setContent, initialValue, onChange, setDisplayText} : {
   setContent : React.Dispatch<React.SetStateAction<string>>,
   initialValue : string,
   onChange : React.Dispatch<React.SetStateAction<string>>,
+  setDisplayText : React.Dispatch<React.SetStateAction<string>>,
 }) => {
   const editor = useEditor({
     onUpdate({ editor }) {
       // The content has changed.
       const htmlData = `${editor?.getHTML() || ''}`;
+      let plainText = editor.getText();
+      plainText = plainText.substring(0,Math.max(50, plainText.length));
       setContent(htmlData)
+      setDisplayText(plainText);
       onChange(htmlData);
       // console.log("ON UPDATE : ",htmlData)
     },
