@@ -7,13 +7,21 @@ import DetailsSkeleton from '@/components/DetailsSkeleton';
 import ProfileImage from '@/components/ProfileImage';
 import EditProfileImageModal from '@/components/dashboard/EditProfileImageModal';
 import UserData from '@/components/dashboard/UserData';
+import DeleteProfileImageModal from '@/components/dashboard/DeleteProfileImageModal';
 
 const UserDetailsPage = () => {
     const { data, error, isLoading } = useFetchUser();
 
-    const openModal = () => {
+    const openUploadModal = () => {
         const dialog = document.getElementById(
             "profile_image_modal"
+        ) as HTMLDialogElement; // Cast to HTMLDialogElement
+        dialog.showModal();
+    };
+
+    const openDeleteModal = () => {
+        const dialog = document.getElementById(
+            "profile_image_delete_modal"
         ) as HTMLDialogElement; // Cast to HTMLDialogElement
         dialog.showModal();
     };
@@ -41,7 +49,7 @@ const UserDetailsPage = () => {
                         <button
                             className="text-white text-2xl hover:text-accent"
                             onClick={() => {
-                                openModal();
+                                openUploadModal();
                             }}
                             aria-label="Edit Image"
                         >
@@ -49,7 +57,7 @@ const UserDetailsPage = () => {
                         </button>
                         <button
                             className="text-white text-2xl hover:text-red-400"
-                            onClick={() => { }}
+                            onClick={() => { openDeleteModal()}}
                             aria-label="Delete Image"
                         >
                             <FiTrash2 />
@@ -65,6 +73,9 @@ const UserDetailsPage = () => {
             </div>
             <dialog id="profile_image_modal" className="modal">
                 <EditProfileImageModal />
+            </dialog>
+            <dialog id="profile_image_delete_modal" className="modal modal-bottom sm:modal-middle">
+                <DeleteProfileImageModal />
             </dialog>
         </div>
     );

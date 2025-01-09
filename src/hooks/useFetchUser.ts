@@ -19,10 +19,13 @@ const useFetchUser  = (): UseFetchUser => {
     const { data, error, isLoading } = useQuery<ProfileDataResponseType>({
         queryKey: ["profile"],
         queryFn: async (): Promise<ProfileDataResponseType> => {
-            let token = queryClient.getQueryData(['access-token']) || sessionToken || "";
+            let token = queryClient.getQueryData(['access-token']);
+            token = token || sessionToken || "";
             const headers = {
                 Authorization: `Bearer ${token}`
             };
+
+            console.log("HEADER FOR USER : ",headers)
 
             try {
                 const fetchUser  = await privateAccessClient.get("/user", {
@@ -40,8 +43,8 @@ const useFetchUser  = (): UseFetchUser => {
                 throw new Error(JSON.stringify(errorResp));
             }
         },
-        retry: false,
-        retryDelay: 25,
+        retry: 2,
+        retryDelay: 60,
         refetchOnWindowFocus: false,
         throwOnError: false,
     });

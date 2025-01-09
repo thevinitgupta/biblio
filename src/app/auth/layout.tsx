@@ -6,6 +6,7 @@ import { getSession } from "@/utils/sessions";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import DaisyThemeProvider from "@/hooks/useDaisyTheme";
+import useGlobalStore from "@/utils/zustand";
 
 export enum AuthTab {
     LOGIN,
@@ -18,7 +19,13 @@ const AuthLayout = ({ children, login, signup }: {
     signup: React.ReactNode,
 }) => {
     const [activeTab, setActiveTab] = useState<AuthTab>(AuthTab.LOGIN);
+    const {sessionToken} = useGlobalStore();
 
+    useEffect(()=> {
+        if(sessionToken) {
+            redirect("/dashboard");
+        }
+    }, [])
     return (
         <DaisyThemeProvider>
             <main className="flex h-screen flex-col items-center justify-center px-16 py-8">

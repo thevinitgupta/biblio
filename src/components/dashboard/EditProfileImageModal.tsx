@@ -3,7 +3,7 @@ import useUploadProfileImage from '@/hooks/useUploadProfileImage';
 import { ResponseType } from '@/types/enums';
 import { UploadProfileImageData } from '@/types/forms';
 import { parseError, parseServerError } from '@/utils/errorParser';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 const EditProfileImageModal = () => {
@@ -11,7 +11,7 @@ const EditProfileImageModal = () => {
     const [fileResponse, setFileResponse] = useState<string| null>(null);
     const [uploadedImage, setUploadedImage] = useState<File>();
     const {register, handleSubmit, reset} = useForm<UploadProfileImageData>(); 
-    const {mutate:upload_profile_img, isError, isPending} = useUploadProfileImage();
+    const {mutate:upload_profile_img, isError, isPending, isSuccess, data, reset : resetUpload} = useUploadProfileImage();
 
     const handleFile = (e : React.ChangeEvent<HTMLInputElement>) => {
         console.log("File Changed")
@@ -54,6 +54,13 @@ const EditProfileImageModal = () => {
           }
       });
       }
+
+      const handleModalClose = () => {
+        setFileWarning(null);
+        setFileResponse(null);
+        reset();
+        resetUpload(); // Reset the mutation state
+      };
     
     return (
         <>
@@ -63,16 +70,20 @@ const EditProfileImageModal = () => {
                 <p className="py-4 text-sm text-warning">Changes cannot be reverted</p>
                 <form encType='multipart/form-data' onSubmit={handleSubmit(onSubmit)}>
 
-                <input type="file" {...register('file')}  accept='image/png, image/jpg' onChange={(e)=> handleFile(e)}
-                className="file-input file-input-neutral w-full" />
+                {!isPending && !isError && !isSuccess && <input type="file" {...register('file')}  accept='image/png, image/jpg' onChange={(e)=> handleFile(e)}
+                className="file-input file-input-neutral w-full" /> }
+                {
+                    isPending && 
+                    <span className="loading loading-spinner text-accent"></span>
+                }
                 {fileResponse ? <p className={`py-4 text-xs text-success ${fileResponse ? "block" : "invisible"}`}>{fileResponse}</p> : <p className={`py-4 text-xs text-error ${fileWarning ? "block" : "invisible"}`}>{fileWarning}</p> }
                 <div className='w-full flex justify-end'>
-                    <button type="submit" className="btn btn-active btn-primary">Upload</button>
+                    {!isSuccess && !data && <button disabled={isPending} type="submit" className="btn btn-active btn-primary">Upload</button>}
                 </div>
                 </form>
             </div>
             <form method="dialog" className="modal-backdrop bg-black/60">
-                <button>close</button>
+                <button onClick={handleModalClose}>close</button>
             </form>
         </>
     )

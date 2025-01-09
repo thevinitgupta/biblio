@@ -1,6 +1,7 @@
 "use client";
 import Alert from '@/components/Alert';
 import ProfileImage from '@/components/ProfileImage';
+import useAccessToken from '@/hooks/useAccessToken';
 import DaisyThemeProvider from '@/hooks/useDaisyTheme';
 import useLogout from '@/hooks/useLogout';
 import { ResponseType } from '@/types/enums';
@@ -17,13 +18,25 @@ const DashboardLayout = ({ children, UserDetails, posts }: {
     posts: React.ReactNode
 }) => {
     const { sessionToken} = useGlobalStore();
+    const {mutate : refreshAccessToken, isError, data, isPending} = useAccessToken();
     
     const router = useRouter();
-    useEffect(()=> {
-        if(!sessionToken) {
-            router.push("/auth")
+
+
+    useEffect(() => {
+    const handleAuthCheck = () => {
+      if (!sessionToken) {
+        if (isError) {
+          router.push("/auth"); // Redirect if there's an error during refresh
+        } else if (!isPending && (!data || data.type !== ResponseType.success)) {
+          refreshAccessToken({});
+          
         }
-    }, [sessionToken]);
+      }
+    };
+
+    handleAuthCheck();
+  }, [sessionToken, isError, isPending, data, refreshAccessToken, router]);
 
     
     return (

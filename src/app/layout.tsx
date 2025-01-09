@@ -5,6 +5,7 @@ import TanstackQueryProvider from "@/utils/TanstackQueryProvider";
 import useGlobalStore from "@/utils/zustand";
 import DaisyThemeProvider from "@/hooks/useDaisyTheme";
 import Navbar from "@/components/Navbar";
+import TokenInitializer from "@/components/TokenInitializer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ export default function RootLayout({
       <body className={`${inter.className}`}>
         <DaisyThemeProvider>
         <TanstackQueryProvider>
-
+          {/* <TokenInitializer/> */}
           <Navbar/>
           {children}
 
