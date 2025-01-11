@@ -1,0 +1,11 @@
+11-01-2025 06:59:43.346 PM [development] warn: Client Warning : Server Down
+11-01-2025 06:59:43.356 PM [development] warn: Client Warning : Server Down
+11-01-2025 06:59:44.952 PM [development] warn: Client Warning : Server Down
+11-01-2025 06:59:44.960 PM [development] warn: Client Warning : Server Down
+11-01-2025 06:59:49.320 PM [development] warn: Client Warning : Server downtime experienced
+11-01-2025 07:54:48.510 PM [development] error: Client Error : Unexpected end of JSON input
+11-01-2025 07:54:48.537 PM [development] error: Client Error : Unexpected end of JSON input
+11-01-2025 07:54:48.552 PM [development] error: Client Error : Unexpected end of JSON input
+11-01-2025 07:54:48.565 PM [development] error: Client Error : Unexpected end of JSON input
+11-01-2025 07:54:48.590 PM [development] error: Client Error : App Crashed, caught in Global Error Handler
+11-01-2025 07:54:48.625 PM [development] error: Client Error : App Crashed, caught in Global Error Handler
