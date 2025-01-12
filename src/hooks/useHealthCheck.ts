@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from "next/navigation";
+"use client"
 import { useEffect, useState } from "react";
 
 export interface HealthCheckResponseI{
@@ -7,7 +7,6 @@ export interface HealthCheckResponseI{
     loading : boolean
 }
 const useHealthCheck = (check = true ) => {
-    const params = useSearchParams();
     const [healthCheckResponse, setHealthCheckResponse] = useState<HealthCheckResponseI>({
         ok: false,
         reason: "",
@@ -52,7 +51,7 @@ const useHealthCheck = (check = true ) => {
                 loading : false
             });
         }
-    },[params])
+    },[])
     return healthCheckResponse;
 }
 

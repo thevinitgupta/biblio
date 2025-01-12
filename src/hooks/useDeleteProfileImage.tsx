@@ -1,5 +1,4 @@
 import { loggingService } from "@/app/actions/logging";
-import { loginUser } from "@/app/actions/loginUser";
 import { LoginResponseType } from "@/types/authentication";
 import { ImageDataResponseType, ProfileDataResponseType, ServerResponseType } from "@/types/common";
 import { ResponseType, LoggerLevel } from "@/types/enums";

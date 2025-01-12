@@ -4,12 +4,10 @@ import PostView from '@/components/posts/PostView';
 import useFetchPost from '@/hooks/useFetchPost';
 import React, { PropsWithChildren } from 'react'
 
-const Post = ({
-  params,
-  children
+const PostPage = ({
+  params
 }: {
-  params: { slug: string },
-  children: React.ReactNode
+  params: { slug: string }
 }) => {
   console.log("Dynamic Route Props : ", params)
   const { data, error, isLoading } = useFetchPost({
@@ -42,4 +40,4 @@ const Post = ({
   )
 }
 
-export default Post
+export default PostPage

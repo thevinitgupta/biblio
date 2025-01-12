@@ -7,8 +7,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { ResponseType } from '@/types/enums';
 
 const UserDetails = () => {
-    const {isPending, isLoading, isFetching,status,data, isError, error} = useFetchUser();
-    console.log(status,data); 
+    const { isLoading, data, error} = useFetchUser();
+    console.log(data); 
   const queryClient = useQueryClient();
   const token = queryClient.getQueryData(['access-token']);
   console.log(token);
@@ -16,7 +16,7 @@ const UserDetails = () => {
         return <DetailsSkeleton lines={2}/>
     }
 
-    if(data?.type!==ResponseType.success || isError) {
+    if(data?.type!==ResponseType.success || error) {
         console.log("Error : ", error || data?.message)
         return (
           <div>Cannot access Profile page!</div>

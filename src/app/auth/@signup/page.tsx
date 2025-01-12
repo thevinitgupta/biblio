@@ -1,9 +1,7 @@
 "use client";
 
-import { registerUser } from "@/app/actions/register";
 import Alert from "@/components/Alert";
 import Button from "@/components/Button";
-import { useFormState } from "react-dom";
 import { ResponseType } from "../../../types/enums";
 import PasswordInput from "@/components/PasswordInput";
 import { SignupFormData } from "@/types/forms";
