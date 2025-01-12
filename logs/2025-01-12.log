@@ -11,3 +11,5 @@
 12-01-2025 05:20:29.755 PM [development] warn: Client Warning : Server Down
 12-01-2025 05:20:29.768 PM [development] warn: Client Warning : Server Down
 12-01-2025 05:28:52.175 PM [development] error: Client Error : Logged out, please login again to proceed
+12-01-2025 05:49:50.517 PM [development] error: Client Error : User unauthorized to proceed
+12-01-2025 05:50:00.208 PM [development] error: Client Error : User unauthorized to proceed

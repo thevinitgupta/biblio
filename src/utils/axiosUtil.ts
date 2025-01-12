@@ -40,7 +40,7 @@ axios.interceptors.request.use((config) => {
 
 
 const authClient = axios.create({
-    baseURL: 'http://localhost:8080/auth',
+    baseURL: `${process.env.NEXT_PUBLIC_API_URL}/auth`,
     headers: {
         "Content-Type": "application/json",
         "Accepts" : "application/json",
@@ -49,7 +49,7 @@ const authClient = axios.create({
 
 
 const privateAccessClient = axios.create({
-    baseURL : "http://localhost:8080/",
+    baseURL : `${process.env.NEXT_PUBLIC_API_URL}/`,
     headers : {
         "getSetCookie": "refreshToken",
         // "Content-Type": "application/json",
