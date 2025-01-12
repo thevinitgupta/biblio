@@ -19,8 +19,13 @@ export type ImageDataResponseType = {
     type : ResponseType,
     data : string
 }
-
 export type PostDataResponseType = {
+    message : string,
+    type : ResponseType,
+    data : Post
+}
+
+export type PostsDataResponseType = {
     message : string,
     type : ResponseType,
     data : Array<Post>

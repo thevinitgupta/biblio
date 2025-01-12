@@ -9,3 +9,22 @@
 11-01-2025 07:54:48.565 PM [development] error: Client Error : Unexpected end of JSON input
 11-01-2025 07:54:48.590 PM [development] error: Client Error : App Crashed, caught in Global Error Handler
 11-01-2025 07:54:48.625 PM [development] error: Client Error : App Crashed, caught in Global Error Handler
+11-01-2025 08:18:42.574 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:18:42.587 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:19:23.551 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:19:23.563 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:27:13.728 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:27:13.760 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:27:50.136 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:27:50.173 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:27:53.942 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:27:53.962 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:29:04.296 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:29:04.338 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:29:13.789 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:29:13.852 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:30:06.263 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:30:06.276 PM [development] warn: Client Warning : Server Down
+11-01-2025 08:56:01.969 PM [development] error: Client Error : Logged out, please login again to proceed
+11-01-2025 08:56:12.943 PM [development] error: Client Error : Logged out, please login again to proceed
+11-01-2025 08:56:39.853 PM [development] error: Client Error : Logged out, please login again to proceed

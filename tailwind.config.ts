@@ -32,6 +32,7 @@ const config: Config = {
       {
         ivory: {
           "primary": "#021127ff",
+          "light-primary": "#021127f1f",
           "--primary": "#021127ff",
           "--primary/65": "#021127ff65",
           "secondary": "#3f3727ff",

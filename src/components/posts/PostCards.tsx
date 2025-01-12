@@ -1,13 +1,15 @@
 "use client";
 import { UserI } from '@/types/user';
-import React, { useEffect } from 'react'
+import React, { MouseEventHandler, useEffect } from 'react'
 
 import useFetchPosts from '@/hooks/useFetchPosts';
 import DetailsSkeleton from '@/components/DetailsSkeleton';
 import PostCard from './PostCard';
 
+
 const PostCards = () => {
   const { data, error, isLoading } = useFetchPosts();
+  
 
   if (isLoading) {
       return <DetailsSkeleton lines={2}/>;
@@ -21,7 +23,7 @@ const PostCards = () => {
           </div>
       );
   }
-
+ 
 
   return (
       <div className={`flex flex-wrap gap-5 justify-center items-stretch w-full`}>
