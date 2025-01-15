@@ -16,7 +16,7 @@ const PasswordInput = ({register} : {
     }
     return (
         <div className="join input input-bordered w-full gap-2">
-            <label className="outline-none flex items-center gap-2">
+            <label className="outline-none flex flex-grow items-center gap-2">
                 <input {...register('password')} type={passwordType === "password" ? "password" : "text"} placeholder="password" className="grow join-item" name="password" />
             </label>
             <label className="swap swap-rotate">
