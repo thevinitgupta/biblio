@@ -41,8 +41,8 @@ const UserDetailsPage = () => {
     }
 
     return (
-        <div className={`hero bg-base-200 min-h-[40vh] w-full md:w-[90%] mx-auto mb-5 px-10 rounded-xl`}>
-            <div className="hero-content w-full flex-col lg:flex-row max-w-none justify-between gap-10 lg:gap-14">
+        <div className={`hero bg-base-200 min-h-[40vh] w-full md:w-[90%] mx-auto mb-5 px-0 md:px-10 rounded-xl`}>
+            <div className="hero-content px-0 md:px-4 w-full flex-col lg:flex-row max-w-none justify-between gap-10 lg:gap-14">
                 <div>
                     <ProfileImage height={350} width={350} hClass='h-48' wClass='w-48' borderClass='border-[5px]'>
 
@@ -65,8 +65,8 @@ const UserDetailsPage = () => {
 
                     </ProfileImage>
                 </div>
-                <div className={`flex flex-col w-full items-start`}>
-                    <h1 className="text-4xl font-bold">{data?.data.firstName} {data?.data.lastName} </h1>
+                <div className={`flex flex-col w-full items-center md:items-start`}>
+                    <h1 className="text-2xl md:text-4xl text-center w-full md:w-fit font-bold">{data?.data.firstName} {data?.data.lastName} </h1>
                     <UserData email={data?.data.email!}  posts={15} viewsCount={1200} />
 
                 </div>

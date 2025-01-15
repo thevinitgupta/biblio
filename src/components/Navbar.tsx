@@ -66,7 +66,7 @@ const Navbar = () => {
             </div>
 
 
-            <div className="navbar-center w-3/5 flex flex-row justify-evenly">
+            <div className="navbar-center w-3/5 hidden md:flex flex-row justify-evenly">
 
 
 
@@ -98,8 +98,8 @@ const Navbar = () => {
                 }
             </div>
                 
-            <div className="navbar-end gap-5">
-            <input  type="checkbox" defaultChecked className="toggle border-primary bg-base-200 checked:bg-primary checked:text-primary checked:border-primary text-primary" 
+            <div className="navbar-center md:navbar-end gap-5">
+            <input  type="checkbox" defaultChecked className="toggle h-3 md:h-6 w-6 md:w-12  border-primary bg-base-200 checked:bg-primary checked:text-primary checked:border-primary text-primary" 
             onClick={()=> toggleTheme()}
             />
            {sessionToken && <Link href={"/dashboard"} className="">

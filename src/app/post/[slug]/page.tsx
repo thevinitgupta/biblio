@@ -17,7 +17,7 @@ const PostPage = ({
 
 
   return (
-    <div className="bg-base-200 min-h-screen w-full rounded-xl mx-auto flex flex-col items-center">
+    <main className="bg-base-200 min-h-screen w-full rounded-xl mx-auto flex flex-col items-center">
       {/* h-4/5 w-[90%] rounded-xl mx-auto flex flex-col justify-center items-center gap-16"> */}
 
       {
@@ -36,7 +36,7 @@ const PostPage = ({
         !isLoading && !error && data &&
         <PostView post={data.data} />
       }
-    </div>
+    </main>
   )
 }
 
