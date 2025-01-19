@@ -11,6 +11,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import StarterKit from '@tiptap/starter-kit'
 import MenuBar from './MenuBar';
 import BubbleMenu from './BubbleMenu';
+import SearchBook from './SearchBook'
 
 const limit = 2000;
 const defaultContent = `<h3>
@@ -89,6 +90,9 @@ const Editor = ({setContent, initialValue, onChange, setDisplayText} : {
       <MenuBar editor={editor} />
       <BubbleMenu editor={editor} />
       <EditorContent  editor={editor} />
+      <dialog id="search_book_modal" className="modal">
+                <SearchBook />
+            </dialog>
     </div>
   )
 }

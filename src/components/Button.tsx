@@ -45,6 +45,12 @@ const ButtonBase = ({ message, loadingMessage, variantClass, onClick, type }: { 
 Button.Primary = ({ message, loadingMessage = "loading", type = "button", styles }: AlertProps) => <ButtonBase message={message} loadingMessage={loadingMessage} variantClass={`btn-primary ${styles}`} type={type} />;
 Button.Secondary = ({ message, loadingMessage = "loading", styles,  type = "button" }: AlertProps) => <ButtonBase message={message} loadingMessage={loadingMessage} variantClass={`btn-secondary ${styles}`} type={type}/>;
 Button.Accent = ({ message, loadingMessage = "loading", styles, onClick, type = "button" }: AlertProps) => <ButtonBase message={message} loadingMessage={loadingMessage} variantClass={`btn-accent ${styles}`} onClick={onClick} type={type} />;
+Button.Loading = ({ message, loadingMessage = "loading", styles, onClick, type = "button" }: AlertProps) => (
+  <button className="w-full btn btn-neutral text-primary" type={type} disabled>
+  <span className="loading loading-spinner"></span>
+  {loadingMessage}
+</button>
+);
 // Button. = ({ message }: AlertProps) => <AlertBase message={message} variantClass="alert-warning" />;
 // Alert.Info = ({ message }: AlertProps) => <AlertBase message={message} variantClass="alert-info" />;
 // Alert.Default = ({ message, type="info" }: AlertProps) => <AlertBase message={message} variantClass={"alert-"+type} />;

@@ -3,6 +3,7 @@ import { Editor } from '@tiptap/react'
 import { CharacterCount } from './CharacterCount'
 import useGlobalStore from '@/utils/zustand';
 import { Theme } from '@/utils/zustand/themeStore';
+import { GiBookmark } from "react-icons/gi";
 
 const MenuBar = ({ editor }: {
     editor: Editor | null
@@ -13,9 +14,17 @@ const MenuBar = ({ editor }: {
 
     const {theme} = useGlobalStore();
 
+    const openSearchModal = () => {
+        const dialog = document.getElementById(
+            "search_book_modal"
+        ) as HTMLDialogElement; // Cast to HTMLDialogElement
+        dialog.showModal();
+    };
+
+
     return (
-        <div className="control-group join-item w-full px-8 py-4 flex justify-between items-center sticky top-0 left-0 z-30 bg-base-100">
-            <div className="button-group flex justify-start gap-6">
+        <div className="control-group join-item w-full px-4 py-4 flex flex-col justify-between items-start md:items-center sticky top-0 left-0 z-30 bg-base-100 gap-6">
+            <div className="button-group w-full flex justify-start gap-3 md:gap-6">
                 <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 lg:size-7">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.243 4.493v7.5m0 0v7.502m0-7.501h10.5m0-7.5v7.5m0 0v7.501m4.501-8.627 2.25-1.5v10.126m0 0h-2.25m2.25 0h2.25" />
@@ -98,8 +107,13 @@ const MenuBar = ({ editor }: {
                     </ul>
                 </div>
             </div>
+            <div className={`w-full flex justify-between items-center`}>
             <CharacterCount editor={editor} />
-
+            <div className={`flex w-content h-6 md:h-10 py-3 px-6 justify-start gap-2 items-center bg-base-200 text-sm md:text-base rounded-lg cursor-pointer`}
+            onClick={openSearchModal}>
+            <GiBookmark className={`h-6 md:h-8 w-6 md:w-8`} /> Add Book
+            </div>
+            </div>
         </div>
     )
 }

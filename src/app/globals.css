@@ -4,71 +4,122 @@
 
 
 .character-count {
-    align-items: center;
-    color: var(--gray-5);
-    display: flex;
-    font-size: 0.75rem;
-    gap: 0.5rem;
-    /* margin: 1.5rem; */
+  align-items: center;
+  color: var(--gray-5);
+  display: flex;
+  font-size: 0.75rem;
+  gap: 0.5rem;
+  /* margin: 1.5rem; */
 }
 
 .character-count svg {
-    color: var(--purple);
+  color: var(--purple);
 }
 
 .character-count--warning,
 .character-count--warning svg {
-    color: var(--red);
+  color: var(--red);
 }
 
 p.is-editor-empty:first-child::before {
-    color: var(--primary/65);
-    content: attr(data-placeholder);
-    float: left;
-    height: 0;
-    pointer-events: none;
+  color: var(--primary/65);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.input-field {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.password-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.password-input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.eye-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.list {
+  @apply flex flex-col;
+  font-size: 0.875rem;
+
+  .list-row {
+    --list-grid-cols: minmax(0, auto) 1fr;
+    @apply rounded-box relative grid grid-flow-col gap-4;
+    word-break: break-word;
+    grid-template-columns: var(--list-grid-cols);
+
+    &:has(.list-col-grow:nth-child(1)) {
+      --list-grid-cols: 1fr;
+    }
+
+    &:has(.list-col-grow:nth-child(2)) {
+      --list-grid-cols: minmax(0, auto) 1fr;
+    }
+
+    &:has(.list-col-grow:nth-child(3)) {
+      --list-grid-cols: minmax(0, auto) minmax(0, auto) 1fr;
+    }
+
+    &:has(.list-col-grow:nth-child(4)) {
+      --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
+    }
+
+    &:has(.list-col-grow:nth-child(5)) {
+      --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
+    }
+
+    &:has(.list-col-grow:nth-child(6)) {
+      --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
+    }
+
+    :not(.list-col-wrap) {
+      @apply row-start-1;
+    }
   }
 
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .input-field {
-    width: 100%;
-    max-width: 400px;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .password-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .password-input {
-    flex: 1;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none;
-    outline: none;
-    box-sizing: border-box;
-  }
-  
-  .eye-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    font-size: 1.2rem;
-  }
-  
+}
+
+/* Borders between list rows */
+.list> :not(:last-child) {
+  position: relative;
+}
+
+
+
+.list-col-wrap {
+  @apply row-start-2;
+}
