@@ -4,10 +4,12 @@ import { BiPurchaseTagAlt } from "react-icons/bi";
 
 const BookListItem = ({
   index,
-  book
+  book,
+  tagBook
 }: {
   book : Book,
-  index : number
+  index : number,
+  tagBook: (book: Book) => void
 }) => {
   return (
     <li className="list-row">
@@ -17,7 +19,10 @@ const BookListItem = ({
       <div>{book.volumeInfo.title}</div>
       <div className={`text-xs font-semibold opacity-60 ${book.volumeInfo?.authors?.length>0 ? "" : "hidden"}`}>{book.volumeInfo?.authors?.join(", ")}</div>
     </div>
-    <button className="btn btn-square btn-ghost">
+    <button onClick={(e)=> {
+      e.preventDefault();
+      tagBook(book)
+    }} className="btn btn-square btn-ghost pl-5">
       <BiPurchaseTagAlt className={`w-6 h-6 mr-2 cursor-pointer`} />    
     </button>
   </li>

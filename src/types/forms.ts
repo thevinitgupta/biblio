@@ -34,6 +34,23 @@ export type SignupFormData = z.infer<typeof SignupFormSchema>;
 export const CreatePostSchema = z.object({
   title: z.string().min(15, "Title should be at-least 15 characters"),
   content: z.string().min(150, "Content should be at-least 150 characters"),
+  taggedBook : z.object({
+    id : z.string().nullable(),
+    bookId : z.string().optional(),
+    bookInfo : z.object({
+      title : z.string(),
+      authors : z.array(z.string()),
+      publishedDate : z.string(),
+      industryIdentifiers : z.array(z.object({
+        type : z.string(),
+        identifier : z.string()
+      })),
+      imageLinks : z.object({
+        smallThumbnail : z.string(),
+        thumbnail : z.string()
+      })
+    }),
+  })
 })
 
 

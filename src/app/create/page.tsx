@@ -6,6 +6,7 @@ import Editor from '@/components/create/Editor';
 import Title from '@/components/create/Title';
 import useAuth from '@/hooks/useAuth';
 import useCreatePost from '@/hooks/useCreatePost';
+import { Book } from '@/types/book';
 import { ResponseType } from '@/types/enums';
 import { ErrorResponse } from '@/types/errors';
 import { CreatePostData } from '@/types/forms';
@@ -21,6 +22,7 @@ const CreatePost = () => {
   const router = useRouter();
   const [postBody, setPostBody] = useState('');
   const [displayText, setDisplayText] = useState('');
+  const [taggedBook, setTaggedBook] = useState<Book | null>(null);
   const {register, handleSubmit, control, reset } = useForm<CreatePostData>({
     mode : "onSubmit"
   });
@@ -47,7 +49,10 @@ const CreatePost = () => {
   }
 
   const onSubmit : SubmitHandler<CreatePostData> = (formData) => {
-    server_createPost(formData, {
+    server_createPost({...formData, taggedBook : {
+      id : taggedBook?.id,
+      bookInfo : taggedBook?.volumeInfo
+    }}, {
       onSuccess: (data) => {
           if (data.type === ResponseType.success) {
             reset();
@@ -90,7 +95,8 @@ const CreatePost = () => {
        onKeyDown={handleKeyDown} >
         <Title register={register} />
         <Editor initialValue={''}
-        onChange={onChange} setContent={setPostBody} setDisplayText={setDisplayText}/>
+        onChange={onChange} setContent={setPostBody} setDisplayText={setDisplayText} 
+        setTaggedBook={setTaggedBook} taggedBook={taggedBook} />
         // <textarea {...register('content')} value={postBody} className={`hidden h-0 w-0`} />
         <div className={`w-full grid place-items-center fixed bottom-0 left-0 bg-base-100 shadow-md px-16 py-6`}>
         {server_createPostError && error &&

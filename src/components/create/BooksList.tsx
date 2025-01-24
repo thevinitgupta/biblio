@@ -6,8 +6,10 @@ import useSearchBook from '@/hooks/useSearchBook';
 
 const BooksList = ({
   searchQuery,
+  tagBook
 }: {
   searchQuery: string;
+  tagBook: (book: Book) => void
 }) => {
   const [selectedPage, setSelectedPage] = useState("1");
   const [pages, setPages] = useState(0);
@@ -48,7 +50,7 @@ const BooksList = ({
         {!isLoading && !error && data &&
           getPaginatedData(data.items)?.map((book, index) => (
             <Fragment key={book.id}>
-              <BookListItem book={book} index={index + 1}></BookListItem>
+              <BookListItem book={book} index={index + 1} tagBook={tagBook}></BookListItem>
               {
                 index !== data.items.length - 1 && <div className='divider'></div>
               }

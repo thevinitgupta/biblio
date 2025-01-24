@@ -35,30 +35,37 @@ const useCreatePost = () => {
             
             const token = sessionToken || queryClient.getQueryData(['access-token']);
             // console.log("TOKEN CREATE POST :", token)
+            
+            const createPostData = values as CreatePostData;
 
-        const createPostData = values as CreatePostData;
-        
-        //console.log("Create Post Data : ",createPostData);
+            
+            
+            //console.log("Create Post Data : ",createPostData);
 
-        CreatePostSchema.parse({
-            title: createPostData.title,
-            content: createPostData.content,
-        });
-        const headers = {
-            "Authorization": `Basic ${token?.trim()}`,    
-        }
+            CreatePostSchema.parse({
+                title: createPostData.title,
+                content: createPostData.content,
+                taggedBook: createPostData.taggedBook
+            });
 
-        console.log("Create Post headers : ",headers);
-        const createPostResponse : AxiosResponse = await privateAccessClient.post('/posts/create',createPostData, {
-            headers : headers    
-        });
-            console.log("Create Post Response : ",createPostResponse)
-        const createPostResponseData = createPostResponse.data;
-        
+            createPostData.taggedBook.bookId = createPostData.taggedBook.id!;
+            createPostData.taggedBook.id = null;
 
-        const createPostResponseMessage : string =createPostResponseData as string || '';
-        
-        return {message : createPostResponseMessage, type : ResponseType.success};
+            const headers = {
+                "Authorization": `Basic ${token?.trim()}`,    
+            }
+
+            console.log("Create Post headers : ",headers);
+            const createPostResponse : AxiosResponse = await privateAccessClient.post('/posts/create',createPostData, {
+                headers : headers    
+            });
+                console.log("Create Post Response : ",createPostResponse)
+            const createPostResponseData = createPostResponse.data;
+            
+
+            const createPostResponseMessage : string =createPostResponseData as string || '';
+            
+            return {message : createPostResponseMessage, type : ResponseType.success};
 
         },
     })

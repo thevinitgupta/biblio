@@ -12,6 +12,7 @@ import StarterKit from '@tiptap/starter-kit'
 import MenuBar from './MenuBar';
 import BubbleMenu from './BubbleMenu';
 import SearchBook from './SearchBook'
+import { Book } from '@/types/book'
 
 const limit = 2000;
 const defaultContent = `<h3>
@@ -39,11 +40,13 @@ Oh devs just wanna have fun<br>
 (devs, they wanna, wanna have fun, devs wanna have)
 </p>`;
 
-const Editor = ({setContent, initialValue, onChange, setDisplayText} : {
+const Editor = ({setContent, initialValue, onChange, setDisplayText, setTaggedBook, taggedBook} : {
   setContent : React.Dispatch<React.SetStateAction<string>>,
   initialValue : string,
   onChange : React.Dispatch<React.SetStateAction<string>>,
   setDisplayText : React.Dispatch<React.SetStateAction<string>>,
+  setTaggedBook : React.Dispatch<React.SetStateAction<Book|null>>,
+  taggedBook : Book | null
 }) => {
   const editor = useEditor({
     onUpdate({ editor }) {
@@ -87,11 +90,11 @@ const Editor = ({setContent, initialValue, onChange, setDisplayText} : {
 
   return (
     <div className={`join-item w-full`}>
-      <MenuBar editor={editor} />
+      <MenuBar editor={editor} book={taggedBook} />
       <BubbleMenu editor={editor} />
       <EditorContent  editor={editor} />
       <dialog id="search_book_modal" className="modal">
-                <SearchBook />
+                <SearchBook setTaggedBook={setTaggedBook} />
             </dialog>
     </div>
   )

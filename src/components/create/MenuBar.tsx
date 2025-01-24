@@ -4,15 +4,17 @@ import { CharacterCount } from './CharacterCount'
 import useGlobalStore from '@/utils/zustand';
 import { Theme } from '@/utils/zustand/themeStore';
 import { GiBookmark } from "react-icons/gi";
+import { Book } from '@/types/book';
 
-const MenuBar = ({ editor }: {
-    editor: Editor | null
+const MenuBar = ({ editor, book }: {
+    editor: Editor | null,
+    book: Book | null
 }) => {
     if (!editor) {
         return null
     }
 
-    const {theme} = useGlobalStore();
+    const { theme } = useGlobalStore();
 
     const openSearchModal = () => {
         const dialog = document.getElementById(
@@ -21,6 +23,7 @@ const MenuBar = ({ editor }: {
         dialog.showModal();
     };
 
+    
 
     return (
         <div className="control-group join-item w-full px-4 py-4 flex flex-col justify-between items-start md:items-center sticky top-0 left-0 z-30 bg-base-100 gap-6">
@@ -44,7 +47,7 @@ const MenuBar = ({ editor }: {
 
                 </button>
                 <button type="button" onClick={() => editor.chain().focus().setParagraph().run()} className={editor.isActive('paragraph') ? 'is-active' : ''}>
-                    <img className={`opacity-75 size-4 lg:size-7`} width="16" height="16" src={`https://img.icons8.com/material-outlined/24/${theme==="noir" ? "fffcff" : "021127ff"}/paragraph.png` }alt="paragraph" />
+                    <img className={`opacity-75 size-4 lg:size-7`} width="16" height="16" src={`https://img.icons8.com/material-outlined/24/${theme === "noir" ? "fffcff" : "021127ff"}/paragraph.png`} alt="paragraph" />
 
 
                 </button>
@@ -68,7 +71,7 @@ const MenuBar = ({ editor }: {
 
                 </button>
                 <button type="button" onClick={() => editor.chain().focus().setHorizontalRule().run()} className={editor.isActive('strike') ? 'is-active' : ''}>
-                    <img className={`opacity-75 size-4 lg:size-7`} src={`https://img.icons8.com/ios-glyphs/30/${theme==="noir" ? "fffcff" : "021127ff"}/horizontal-line.png`} alt="horizontal-line" />
+                    <img className={`opacity-75 size-4 lg:size-7`} src={`https://img.icons8.com/ios-glyphs/30/${theme === "noir" ? "fffcff" : "021127ff"}/horizontal-line.png`} alt="horizontal-line" />
                 </button>
 
                 <div className="dropdown dropdown-hover">
@@ -108,11 +111,20 @@ const MenuBar = ({ editor }: {
                 </div>
             </div>
             <div className={`w-full flex justify-between items-center`}>
-            <CharacterCount editor={editor} />
-            <div className={`flex w-content h-6 md:h-10 py-3 px-6 justify-start gap-2 items-center bg-base-200 text-sm md:text-base rounded-lg cursor-pointer`}
-            onClick={openSearchModal}>
-            <GiBookmark className={`h-6 md:h-8 w-6 md:w-8`} /> Add Book
-            </div>
+                <CharacterCount editor={editor} />
+                <div className={`flex w-content h-6 md:h-10 py-3 px-6 justify-start gap-2 items-center bg-base-200 text-sm md:text-base rounded-lg cursor-pointer`}
+                    onClick={openSearchModal}>
+                    {
+                        book ?
+                            <>
+                                <img
+                                    className="mask mask-circle h-6 md:h-8 w-6 md:w-8" src={book.volumeInfo.imageLinks.smallThumbnail} />
+                                {book.volumeInfo.title.substring(0,10).concat("...")}
+                            </>
+                            :
+                            <><GiBookmark className={`h-6 md:h-8 w-6 md:w-8`} /> Add Book</>
+                    }
+                </div>
             </div>
         </div>
     )
