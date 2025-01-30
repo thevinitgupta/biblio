@@ -26,7 +26,7 @@ const MenuBar = ({ editor, book }: {
     
 
     return (
-        <div className="control-group join-item w-full px-4 py-4 flex flex-col justify-between items-start md:items-center sticky top-0 left-0 z-30 bg-base-100 gap-6">
+        <div className="control-group join-item w-full px-4 py-4 flex flex-col justify-between items-start md:items-center sticky top-10 left-0 z-30 bg-base-100">
             <div className="button-group w-full flex justify-start gap-3 md:gap-6">
                 <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 lg:size-7">
@@ -118,8 +118,8 @@ const MenuBar = ({ editor, book }: {
                         book ?
                             <>
                                 <img
-                                    className="mask mask-circle h-6 md:h-8 w-6 md:w-8" src={book.volumeInfo.imageLinks.smallThumbnail} />
-                                {book.volumeInfo.title.substring(0,10).concat("...")}
+                                    className="mask mask-circle h-6 md:h-8 w-6 md:w-8" src={book.volumeInfo?.imageLinks.smallThumbnail} />
+                                {book.volumeInfo?.title.substring(0,10).concat("...")}
                             </>
                             :
                             <><GiBookmark className={`h-6 md:h-8 w-6 md:w-8`} /> Add Book</>

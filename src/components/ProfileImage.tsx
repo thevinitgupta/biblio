@@ -13,7 +13,11 @@ const ProfileImage = ({height=200, width=200, hClass = 'h-12', wClass='w-12', bo
   borderClass? : string,
   children?: ReactNode
 }) => {
-  const { isLoading, data, isError } = useFetchImage();
+  const { isLoading, data, isError } = useFetchImage({
+    imageQueryKey: ["profile-image"],
+    isPrivate: true,
+    endpoint: "/user/profileImage"
+  });
   const [isHovered, setIsHovered] = useState(false);
 
   if(!isLoading && (data?.type !== ResponseType.success || isError) ){

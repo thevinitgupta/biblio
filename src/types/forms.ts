@@ -50,22 +50,35 @@ export const CreatePostSchema = z.object({
         thumbnail : z.string()
       })
     }),
-  })
+  }),
+  coverImage : z.string().optional()
 })
 
 
 export type CreatePostData = z.infer<typeof CreatePostSchema>;
 
-const MAX_FILE_SIZE = 2097152;
+const MAX_PROFILE_FILE_SIZE = 2097152;
+const MAX_POST_FILE_SIZE = 5242880;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
 
 
 export const UploadProfileImageSchema = z.object({
   file : z.any()
-  .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 2MB.`)
+  .refine((file) => file?.size <= MAX_PROFILE_FILE_SIZE, `Max image size is 2MB.`)
   .refine(
     (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
     "Only .jpg, .jpeg and .png formats are supported."
   )
 });
 export type UploadProfileImageData = z.infer<typeof UploadProfileImageSchema>;
+
+
+export const UploadPostImageSchema = z.object({
+  file : z.any()
+  .refine((file) => file?.size <= MAX_POST_FILE_SIZE, `Max image size is 5MB.`)
+  .refine(
+    (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+    "Only .jpg, .jpeg and .png formats are supported."
+  )
+});
+export type UploadPostImageData = z.infer<typeof UploadPostImageSchema>;

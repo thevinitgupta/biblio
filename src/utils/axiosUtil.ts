@@ -47,6 +47,14 @@ const authClient = axios.create({
     },
 });
 
+const publicClient = axios.create({
+    baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
+    headers: {
+        "Content-Type": "application/json",
+        
+    },
+});
+
 
 const privateAccessClient = axios.create({
     baseURL : `${process.env.NEXT_PUBLIC_API_URL}/`,
@@ -112,4 +120,4 @@ async (error : AxiosError) => {
 
 
 
-export {authClient,privateAccessClient, axios};
+export {authClient,privateAccessClient,publicClient, axios};

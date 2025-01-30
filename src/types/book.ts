@@ -4,7 +4,15 @@ export interface BookSearchResponse {
 
 export interface Book {
     id : string,
-    volumeInfo : {
+    volumeInfo ? : {
+        title : string,
+        subtitle ? : string,
+        authors : Array<string>,
+        publishedDate : string,
+        industryIdentifiers : Array<IndustryIdentifier>,
+        imageLinks : ImageLinks
+    },
+    bookInfo ? : {
         title : string,
         subtitle ? : string,
         authors : Array<string>,

@@ -36,6 +36,7 @@ const useCreatePost = () => {
             const token = sessionToken || queryClient.getQueryData(['access-token']);
             // console.log("TOKEN CREATE POST :", token)
             
+            console.log("CREATE POST DATA : "+values.coverImage, values.title, values.content, values.taggedBook)
             const createPostData = values as CreatePostData;
 
             
@@ -45,7 +46,8 @@ const useCreatePost = () => {
             CreatePostSchema.parse({
                 title: createPostData.title,
                 content: createPostData.content,
-                taggedBook: createPostData.taggedBook
+                taggedBook: createPostData.taggedBook,
+                coverImage: createPostData.coverImage
             });
 
             createPostData.taggedBook.bookId = createPostData.taggedBook.id!;
