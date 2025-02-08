@@ -1,0 +1,10 @@
+06-02-2025 09:32:02.488 AM [development] error: Client Error : Cannot read properties of undefined (reading 'smallThumbnail')
+06-02-2025 09:32:02.502 AM [development] error: Client Error : Cannot read properties of undefined (reading 'smallThumbnail')
+06-02-2025 09:34:14.501 AM [development] error: Client Error : Cannot read properties of undefined (reading 'smallThumbnail')
+06-02-2025 09:34:14.510 AM [development] error: Client Error : Cannot read properties of undefined (reading 'smallThumbnail')
+06-02-2025 09:35:10.029 AM [development] error: Client Error : Cannot read properties of undefined (reading 'smallThumbnail')
+06-02-2025 09:35:10.039 AM [development] error: Client Error : Cannot read properties of undefined (reading 'smallThumbnail')
+06-02-2025 09:39:46.131 AM [development] error: Client Error : Cannot read properties of undefined (reading 'smallThumbnail')
+06-02-2025 09:39:46.143 AM [development] error: Client Error : Cannot read properties of undefined (reading 'smallThumbnail')
+06-02-2025 09:40:49.957 AM [development] error: Client Error : Failed to construct 'Image': Please use the 'new' operator, this DOM object constructor cannot be called as a function.
+06-02-2025 09:40:50.035 AM [development] error: Client Error : Failed to construct 'Image': Please use the 'new' operator, this DOM object constructor cannot be called as a function.
