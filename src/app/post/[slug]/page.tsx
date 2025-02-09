@@ -17,7 +17,7 @@ const PostPage = ({
 
 
   return (
-    <main className="bg-base-200 min-h-screen w-full rounded-xl mx-auto flex flex-col items-center">
+    <main className="bg-base-200 min-h-screen w-full max-w-[876px] rounded-xl mx-auto flex flex-col items-center shadow-md">
       {/* h-4/5 w-[90%] rounded-xl mx-auto flex flex-col justify-center items-center gap-16"> */}
 
       {

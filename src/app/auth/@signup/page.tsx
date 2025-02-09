@@ -57,7 +57,11 @@ function Signup() {
                     />
                 </label>
                 <PasswordInput register={register} />
-                <Button.Primary message="Sign Up" type="submit" />
+                {
+                    isPending || data && !isError ?
+                    <Button.Loading message="Login" loadingMessage="Redirecting" type="button" onClick={() => {}} styles={`btn-disabled`} />
+                    :<Button.Primary message="Sign Up" type="submit" />
+                }
                 {isError && error && (
                     <Alert.Default
                         key={Date.now()}

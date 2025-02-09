@@ -48,7 +48,7 @@ const Navbar = () => {
         });
     }
     return (
-        <nav className={pathname.startsWith("/auth") ? "hidden" : "navbar bg-base-200 w-full md:w-[90%] mx-auto mb-5 px-5 py-4 sticky top-5 z-40 rounded-xl"}>
+        <nav className={pathname.startsWith("/auth") ? "hidden" : "navbar bg-base-200 w-full md:w-[90%] mx-auto mb-5 px-5 py-4 sticky z-40 rounded-xl"}>
             {/* <div className="navbar-start md:hidden">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
