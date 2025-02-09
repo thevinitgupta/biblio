@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300" fill="none">
+  <!-- Book 1 -->
+  <rect x="30" y="30" width="80" height="100" rx="10" stroke="#8c8c8c" stroke-width="2" />
+  <line x1="40" y1="40" x2="100" y2="40" stroke="#8c8c8c" stroke-width="1.5" />
+  <line x1="40" y1="50" x2="100" y2="50" stroke="#8c8c8c" stroke-width="1.5" />
+  <line x1="40" y1="60" x2="100" y2="60" stroke="#8c8c8c" stroke-width="1.5" />
+
+  <!-- Book 2 -->
+  <rect x="190" y="30" width="80" height="100" rx="10" stroke="#8c8c8c" stroke-width="2" />
+  <line x1="200" y1="40" x2="260" y2="40" stroke="#8c8c8c" stroke-width="1.5" />
+  <line x1="200" y1="50" x2="260" y2="50" stroke="#8c8c8c" stroke-width="1.5" />
+  <line x1="200" y1="60" x2="260" y2="60" stroke="#8c8c8c" stroke-width="1.5" />
+
+  <!-- Book 3 -->
+  <rect x="110" y="190" width="80" height="100" rx="10" stroke="#8c8c8c" stroke-width="2" />
+  <line x1="120" y1="200" x2="180" y2="200" stroke="#8c8c8c" stroke-width="1.5" />
+  <line x1="120" y1="210" x2="180" y2="210" stroke="#8c8c8c" stroke-width="1.5" />
+  <line x1="120" y1="220" x2="180" y2="220" stroke="#8c8c8c" stroke-width="1.5" />
+
+  <!-- Connecting Lines -->
+  <line x1="110" y1="130" x2="70" y2="80" stroke="#8c8c8c" stroke-width="2" stroke-linecap="round" />
+  <line x1="190" y1="130" x2="230" y2="80" stroke="#8c8c8c" stroke-width="2" stroke-linecap="round" />
+  <line x1="150" y1="190" x2="150" y2="130" stroke="#8c8c8c" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Background Hover Effect -->
+  <style>
+    rect:hover {
+      fill: rgba(140, 140, 140, 0.2);
+    }
+    line:hover {
+      stroke: rgba(140, 140, 140, 0.6);
+    }
+  </style>
+</svg>
