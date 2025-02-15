@@ -37,7 +37,7 @@ export default function StreakCard() {
 
         {/* Central Text */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <div className={`relative z-[25] -left-10 text-[28rem] font-extrabold text-[#021127ff] ${frijole.className}`}>
+        <div className={`relative z-[25] -left-10 text-[15rem] md:text-[28rem] font-extrabold text-[#021127ff] ${frijole.className}`}>
         <span
           className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-r from-[#021127ff] via-[#021127ff]  to-slate-200/5 z-10"
           aria-hidden="true"

@@ -27,11 +27,11 @@ export default function AchievementsCard() {
           <img
             src={"/achieve.png"}
             alt=""
-            className="h-[75%] relative object-contain z-[30]"
+            className="h-[60%] md:h-[75%] relative object-contain z-[30]"
           />
 
             <div className="relative w-full flex flex-col items-center justify-center space-y-2">
-              <p className="w-full text-xl text-left text-[#fffcff]/80 font-poppins p-4">
+              <p className="w-full text-sm md:text-xl text-left text-[#fffcff]/80 font-poppins p-4">
                 <span className="font-bold">Achievements Unlocked.</span> Celebrate Your Reading Milestones!
               </p>
               

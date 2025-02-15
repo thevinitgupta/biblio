@@ -88,7 +88,7 @@ const ResponsiveNavbar = () => {
             </div>
 
             {/* Logo Section */}
-            <div className="navbar-start hidden md:flex cursor-pointer" onClick={() => router.push("/")}>
+            <div className="navbar-start flex cursor-pointer" onClick={() => router.push("/")}>
                 <Image
                     alt="biblio"
                     src={theme === "noir" ? "/logo/dark.svg" : "/logo/light.svg"}
