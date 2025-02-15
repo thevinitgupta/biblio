@@ -1,6 +1,8 @@
 import type { Config } from "tailwindcss";
 const typography = require('@tailwindcss/typography')
 const tailwind_theme = require('tailwindcss/defaultTheme')
+const plugin = require("tailwindcss/plugin");
+
 
 const config: Config = {
   content: [
@@ -10,13 +12,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      
       colors: {
         primary: "var(--primary)", // Set your CSS variable for primary color
+        orange: {
+          400: "#f97316", // Orange gradient for background glow.
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          
       },
       fontFamily: {
         poppins: ['Poppins', ...tailwind_theme.fontFamily.sans],
@@ -53,6 +60,7 @@ const config: Config = {
           "success": "#80f153",
           "warning": "#f89b00",
           "error": "#ff5b7b",
+          "card-100": "#021127ff",
         },
         noir: {
           "primary": "#fffcff",
@@ -67,6 +75,7 @@ const config: Config = {
           "success": "#80f153",
           "warning": "#f89b00",
           "error": "#ff5b7b",
+          "card-100": "#021127ff",
         },
       },
     ],
@@ -74,6 +83,30 @@ const config: Config = {
   plugins: [
     require("@tailwindcss/typography"),
     require('daisyui'),
+    plugin(function ({ addUtilities }: { addUtilities: (utilities: Record<string, any>) => void }) {
+      addUtilities({
+        ".bg-noise": {
+          backgroundImage: "url('/noise.png')",
+          backgroundSize: "300px 300px",
+          opacity: "0.7",
+        },
+        ".bg-squares": {
+          backgroundImage: "url('/squares.png')",
+          backgroundSize: "300px 300px",
+          opacity: "0.4",
+        },
+        ".bg-lines": {
+          backgroundImage: "url('/lines.png')",
+          backgroundSize: "100px 100px",
+          opacity: "0.6",
+        },
+        ".text-shadow-inner": {
+          textShadow: "inset 2px 2px 4px rgba(255, 255, 255, 1)", // Adjust values as needed
+        },
+      });
+    }),
+    
+
   ],
 };
 export default config;
