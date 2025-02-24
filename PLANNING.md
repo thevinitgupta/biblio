@@ -2,6 +2,8 @@
 
 ![Reactions Flow](/public/design/Reactionsflow.png)
 
+![Reactions DB Flow](/public/design/ReactionsDB.svg)
+
 ---
 
 ## Bento Design
