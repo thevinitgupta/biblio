@@ -196,3 +196,8 @@ p.is-editor-empty:first-child::before {
   transform-style: preserve-3d;
 }
 
+.stroke-custom {
+  path {
+    stroke-width: 0.6px !important;
+  }
+}
