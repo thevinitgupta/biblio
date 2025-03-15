@@ -15,7 +15,7 @@ import EditComment from './EditComment'
 
 dayjs.extend(LocalizedFormat);
 
-const Comment = ({ comment, removeComment}: {
+const CommentItem = ({ comment, removeComment}: {
     comment: Comment,
     removeComment?: (commentId : string) => void
 }) => {
@@ -125,7 +125,7 @@ const Comment = ({ comment, removeComment}: {
 
                 comment.replies.map((reply) => {
                     return (
-                        <Comment key={reply.id} comment={reply}/>
+                        <CommentItem key={reply.id} comment={reply}/>
                     )
                 })
 
@@ -134,4 +134,4 @@ const Comment = ({ comment, removeComment}: {
     )
 }
 
-export default Comment
+export default CommentItem
