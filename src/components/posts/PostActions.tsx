@@ -1,8 +1,8 @@
 "use client";
 import { REVIEW_REACTIONS } from '@/constants/reactions'
-import useToggleReaction from '@/hooks/useToggleReaction'
+
 import { Post } from '@/types/post'
-import { EntityReactions, EntityType, ReactionsMap, ReviewReactionStringType, ReviewReactionType } from '@/types/reaction'
+import { EntityReactions } from '@/types/reaction'
 import React, { useEffect, useState } from 'react'
 import { BiCommentAdd } from 'react-icons/bi'
 import { FaRegBookmark } from 'react-icons/fa6'
@@ -12,6 +12,8 @@ import Alert from '../Alert'
 import ReactionList from './ReactionList';
 import useReactionHandler from '@/hooks/useReactionHandler';
 
+
+// TODO : Make responsive to be at center and reduce item size
 const PostActions = ({
     post,
     reactions
@@ -23,6 +25,12 @@ const PostActions = ({
     const [reactActive, setReactActive] = useState<boolean>(reactions.userReactions.length > 0)
 
     const { handleReaction, isPending, error: toggle_reaction_error } = useReactionHandler(post.id!);
+
+    const scrolltoHash = function (element_id: string) {
+        const element = document.getElementById(element_id)
+        element?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+        history.pushState(null, "", `#${element_id}`);
+      }
 
     useEffect(() => {
         setReactActive(reactions.userReactions.length > 0)
@@ -51,7 +59,7 @@ const PostActions = ({
                     />
                 )}
             </li>
-            <li>
+            <li onClick={() => scrolltoHash("post-comment")}>
                 <BiCommentAdd className={`w-16 h-16 text-primary/30 hover:text-teal-500`} />
             </li>
             <li>

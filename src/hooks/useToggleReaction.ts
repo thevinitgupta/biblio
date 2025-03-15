@@ -53,7 +53,9 @@ const useToggleReaction = ({
 
             queryClient.invalidateQueries({
                 queryKey : ["reaction-"+entityId]
-            })
+            }, )
+
+            
 
             const toggleReactionResponseMessage : string = toggleReactionResponseData as string || '';
             

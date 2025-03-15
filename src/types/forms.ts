@@ -82,3 +82,12 @@ export const UploadPostImageSchema = z.object({
   )
 });
 export type UploadPostImageData = z.infer<typeof UploadPostImageSchema>;
+
+
+export const CreateCommentSchema = z.object({
+  content : z.string().min(20, "Comment should be at-least 20 character"),
+  parentCommentId : z.string().nullable(),
+  postId : z.string()
+})
+
+export type CreateCommentData = z.infer<typeof CreateCommentSchema>;

@@ -1,3 +1,4 @@
+import { Comments } from "./comment"
 import { ResponseType } from "./enums"
 import { Post } from "./post"
 import { UserI } from "./user"
@@ -32,3 +33,16 @@ export type PostsDataResponseType = {
 }
 
 
+export type CommentsDataResponseType = {
+    message : string,
+    type : ResponseType,
+    data : Comments,
+    pagination : Pagination
+}
+
+export type Pagination = {
+    currentPage: number;
+    totalItems: number;
+    totalPages: number;
+    hasMore: boolean;
+}

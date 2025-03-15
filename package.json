@@ -21,6 +21,7 @@
     "@tiptap/react": "^2.8.0",
     "@tiptap/starter-kit": "^2.8.0",
     "axios": "^1.7.7",
+    "dayjs": "^1.11.13",
     "fs": "^0.0.1-security",
     "jose": "^5.7.0",
     "next": "14.2.3",

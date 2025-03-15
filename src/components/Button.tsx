@@ -7,16 +7,17 @@ interface AlertProps {
   loadingMessage? : string;
   styles ? : string;
   onClick? : (event?: React.MouseEvent<HTMLButtonElement>) => void;
-  type? : "submit" | "button" | "reset" | undefined
+  type? : "submit" | "button" | "reset" | undefined,
+  btnDisabled? : boolean
 }
 
 function Button({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
-const ButtonBase = ({ message, loadingMessage, variantClass, onClick, type }: { message: string; loadingMessage : string; variantClass: string, type : "submit" | "button" | "reset" | undefined, onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void; }) => {
+const ButtonBase = ({ message, loadingMessage, variantClass, onClick, type, btnDisabled = false }: { message: string; loadingMessage : string; variantClass: string, type : "submit" | "button" | "reset" | undefined, onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void, btnDisabled? : boolean} ) => {
     const {pending, data} = useFormStatus();
-    const [disabled,setDisabled] = useState<boolean>(false);
+    const [disabled,setDisabled] = useState<boolean>(btnDisabled);
 
   const baseClasses = "w-full btn";
   const className = `${baseClasses} ${variantClass}`;
@@ -44,6 +45,7 @@ const ButtonBase = ({ message, loadingMessage, variantClass, onClick, type }: { 
 
 Button.Primary = ({ message, loadingMessage = "loading", type = "button", styles }: AlertProps) => <ButtonBase message={message} loadingMessage={loadingMessage} variantClass={`btn-primary ${styles}`} type={type} />;
 Button.Secondary = ({ message, loadingMessage = "loading", styles,  type = "button" }: AlertProps) => <ButtonBase message={message} loadingMessage={loadingMessage} variantClass={`btn-secondary ${styles}`} type={type}/>;
+Button.Neutral = ({ message, btnDisabled, loadingMessage = "loading", styles, onClick,  type = "button" }: AlertProps) => <ButtonBase message={message} loadingMessage={loadingMessage} variantClass={`btn-neutral ${styles}`} type={type} onClick={onClick} btnDisabled={btnDisabled}/>;
 Button.Accent = ({ message, loadingMessage = "loading", styles, onClick, type = "button" }: AlertProps) => <ButtonBase message={message} loadingMessage={loadingMessage} variantClass={`btn-accent ${styles}`} onClick={onClick} type={type} />;
 Button.Loading = ({ message, loadingMessage = "loading", styles, onClick, type = "button" }: AlertProps) => (
   <button className="w-full btn btn-neutral text-primary" type={type} disabled>

@@ -9,7 +9,7 @@ const initialReactions = {
     agree: false,
   };
 
-
+// TODO : Make reactions responsive - Open above instead of below and reduce size
 const ReactionList = ({
     reactions,
     onReactionClick,
