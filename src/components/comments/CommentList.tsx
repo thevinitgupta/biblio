@@ -1,6 +1,6 @@
 import { Comments } from '@/types/comment'
 import React, { useEffect, useState } from 'react'
-import Comment from './Comment'
+import CommentItem from './Comment'
 
 const CommentList = ({
   comments
@@ -21,7 +21,7 @@ const CommentList = ({
     <>
 
       {localComments?.map((comment) => (
-        <Comment key={comment.id} comment={comment} removeComment={handleDelete} />
+        <CommentItem key={comment.id} comment={comment} removeComment={handleDelete} />
       ))}
       
     </>
