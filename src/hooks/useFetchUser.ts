@@ -4,6 +4,7 @@ import { ErrorResponse } from "@/types/errors";
 import { UserI } from "@/types/user";
 import { privateAccessClient } from "@/utils/axiosUtil";
 import useGlobalStore from "@/utils/zustand";
+import { SessionUser } from "@/utils/zustand/userStore";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
@@ -14,7 +15,7 @@ type UseFetchUser =
 
 const useFetchUser  = (): UseFetchUser => {
     const queryClient = useQueryClient();
-    const { sessionToken } = useGlobalStore();
+    const { sessionToken, setUser} = useGlobalStore();
     
     const { data, error, isLoading } = useQuery<ProfileDataResponseType>({
         queryKey: ["profile"],
@@ -31,9 +32,11 @@ const useFetchUser  = (): UseFetchUser => {
                 const fetchUser  = await privateAccessClient.get("/user", {
                     headers
                 });
+
+                setUser(fetchUser.data as SessionUser);
                 return {
                     message: "Success",
-                    data: fetchUser .data as UserI,
+                    data: fetchUser.data as UserI,
                     type: ResponseType.success
                 };
             } catch (err) {

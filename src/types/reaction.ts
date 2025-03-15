@@ -41,3 +41,8 @@ export type ReactionsResponseData = {
     data: EntityReactions;
     type: ResponseType
 }
+
+export type CommentReactions = {
+    userReacted : boolean,
+    totalReactions : number,
+}

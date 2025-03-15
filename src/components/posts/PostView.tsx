@@ -7,6 +7,7 @@ import { authClient } from '@/utils/axiosUtil';
 import PostCoverImage from './PostCoverImage';
 import { EntityReactions, ReactionData, ReviewReactionType } from '@/types/reaction';
 import { REVIEW_REACTIONS } from '@/constants/reactions';
+import Comments from './Comments';
 
 const PostView = ({
     post,
@@ -53,6 +54,8 @@ const PostView = ({
                 dangerouslySetInnerHTML={{__html : post.content}}>
                         
                   </article>
+                  <div className="divider divider-neutral"></div>
+                  <Comments postId={post.id}/>
 
     </>
   )

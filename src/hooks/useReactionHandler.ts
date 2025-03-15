@@ -6,13 +6,14 @@ const useReactionHandler = (postId: string) => {
       mutateAsync: toggleReaction, 
       isPending,
       error 
-    } = useToggleReaction({ entityId: postId });
+    } = useToggleReaction({ entityId: postId});
   
-    const handleReaction = async (reactionType: ReviewReactionStringType) => {
+    const handleReaction = async (reactionType: ReviewReactionStringType, entityType? : EntityType) => {
       try {
+        console.log("Handle Reaction called : "+entityType)
         await toggleReaction({
           reactionType,
-          entityType: EntityType.POST
+          entityType: entityType || EntityType.POST
         });
       } catch (err) {
         console.error("Error posting reaction:", err);
