@@ -16,6 +16,8 @@ const PostCoverImage = ({
         endpoint: "/posts/image/"+post.coverImage
       });
 
+
+      console.log("POST IMAGE DATA :",data)
       
   return (
     <div className={`w-full h-60 rounded-none md:rounded-xl  md:rounded-b-none overflow-hidden relative`}>{

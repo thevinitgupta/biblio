@@ -3,12 +3,15 @@ import React, { useEffect, useState } from 'react'
 import CommentList from '../comments/CommentList';
 import CreateComment from '../comments/CreateComment';
 import Button from '../Button';
+import Alert from '../Alert';
+import useGlobalStore from '@/utils/zustand';
 
 const Comments = ({
     postId
 }: {
     postId: string
 }) => {
+    const [error,setError] = useState<string|null>(null);
     const { 
         data,
         error: comments_error,
@@ -21,6 +24,8 @@ const Comments = ({
         
     });
 
+    const {user} = useGlobalStore();
+
     // Flatten the pages array to get all comments
     const allComments = data?.pages.flatMap(page => page.data) || [];
 
@@ -31,11 +36,11 @@ const Comments = ({
     };
 
     return (
-        <section id='post-comment' className={`w-full min-h-32 flex flex-col justify-start items-center gap-8 mt-6`}>
+        <section id='post-comment' className={`w-full min-h-32 flex flex-col justify-start items-center gap-8 mt-6 relative`}>
             <header className={`w-full px-6 text-start text-xl md:text-3xl font-bold`}>Comments</header>
 
             <main className={`w-full px-6 text-start`}>
-                <CreateComment postId={postId} />
+                {user.email && <CreateComment postId={postId} />}
                 {
                     (comments_loading && !data) &&
                     <span className="loading loading-spinner text-accent text-2xl"></span>
@@ -51,7 +56,7 @@ const Comments = ({
                 }
                 {
                     data && allComments.length > 0 &&
-                    <CommentList comments={allComments} />
+                    <CommentList comments={allComments} setErrorAlert={setError} />
                 }
                 
                 {/* Load more button - only show if there are more comments to load */}
@@ -77,6 +82,10 @@ const Comments = ({
                     </div>
                 }
             </main>
+            {
+                error && 
+                <Alert.Error message={error} />
+            }
         </section>
     )
 }

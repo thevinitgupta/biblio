@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import BackgroundImage from "./BackgroundImage";
 import { getSession } from "@/utils/sessions";
-import { redirect } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { cookies } from "next/headers";
 import DaisyThemeProvider from "@/hooks/useDaisyTheme";
 import useGlobalStore from "@/utils/zustand";
@@ -24,6 +24,7 @@ const AuthLayout = ({
     signup: React.ReactNode;
 }) => {
     const [activeTab, setActiveTab] = useState<AuthTab>(AuthTab.LOGIN);
+    const pathname = usePathname();
     const { sessionToken } = useGlobalStore();
 
     useEffect(() => {
@@ -31,6 +32,17 @@ const AuthLayout = ({
             redirect("/dashboard");
         }
     }, []);
+
+    useEffect(()=> {
+        console.log("pathname changed")
+        if(pathname.includes("login") && activeTab!=AuthTab.LOGIN){
+            setActiveTab(AuthTab.LOGIN)
+        }
+        else if(pathname.includes("signup") && activeTab!=AuthTab.SIGNUP){
+            setActiveTab(AuthTab.SIGNUP);
+        }
+    },
+    [pathname])
 
     return (
         <DaisyThemeProvider>

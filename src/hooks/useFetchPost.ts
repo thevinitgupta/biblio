@@ -2,7 +2,7 @@ import { PostDataResponseType } from "@/types/common";
 import { ResponseType } from "@/types/enums";
 import { ErrorResponse } from "@/types/errors";
 import { Post } from "@/types/post";
-import { privateAccessClient } from "@/utils/axiosUtil";
+import { privateAccessClient, publicClient } from "@/utils/axiosUtil";
 import useGlobalStore from "@/utils/zustand";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
@@ -24,16 +24,11 @@ const useFetchPost  = ({
         queryKey: ["post-"+postId],
         queryFn: async (): Promise<PostDataResponseType> => {
             let token = queryClient.getQueryData(['access-token']) || sessionToken || "";
-            const headers = {
-                Authorization: `Bearer ${token}`
-            };
-
+            
             
 
             try {
-                const fetchUser  = await privateAccessClient.get("/posts?postId="+postId, {
-                    headers
-                });
+                const fetchUser  = await publicClient.get("/posts?postId="+postId);
                 return {
                     message: "Success",
                     data: fetchUser.data.post as Post,

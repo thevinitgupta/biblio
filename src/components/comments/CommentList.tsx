@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react'
 import CommentItem from './Comment'
 
 const CommentList = ({
-  comments
+  comments,
+  setErrorAlert
 }: {
-  comments: Comments
+  comments: Comments,
+  setErrorAlert : React.Dispatch<React.SetStateAction<string | null>>
 }) => {
   const [localComments, setLocalComments] = useState(comments);
 
@@ -21,7 +23,8 @@ const CommentList = ({
     <>
 
       {localComments?.map((comment) => (
-        <CommentItem key={comment.id} comment={comment} removeComment={handleDelete} />
+        <CommentItem key={comment.id} comment={comment} removeComment={handleDelete}
+        setErrorAlert={setErrorAlert} />
       ))}
       
     </>

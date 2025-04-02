@@ -44,7 +44,7 @@ const DashboardLayout = ({ children, UserDetails, posts }: {
             <main className="flex h-screen max-w-[95vw] md:max-w-[100vw] flex-col items-start justify-start bg-base-100 mt-14">
                 {UserDetails}
                 {children}
-                
+                {/* TODO : Add User posts logic and UI (user/posts implemented in backend) */}
             </main>
         </DaisyThemeProvider>
     )

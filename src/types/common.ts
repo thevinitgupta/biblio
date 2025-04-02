@@ -1,7 +1,7 @@
 import { Comments } from "./comment"
 import { ResponseType } from "./enums"
 import { Post } from "./post"
-import { UserI } from "./user"
+import { PostsI, UserI } from "./user"
 
 export type ServerResponseType = {
     message : string,
@@ -29,7 +29,8 @@ export type PostDataResponseType = {
 export type PostsDataResponseType = {
     message : string,
     type : ResponseType,
-    data : Array<Post>
+    data : PostsI,
+    pagination : Pagination
 }
 
 

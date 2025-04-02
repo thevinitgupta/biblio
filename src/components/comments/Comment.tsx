@@ -15,15 +15,18 @@ import EditComment from './EditComment'
 
 dayjs.extend(LocalizedFormat);
 
-const CommentItem = ({ comment, removeComment}: {
+const CommentItem = ({ comment, removeComment, setErrorAlert}: {
     comment: Comment,
-    removeComment?: (commentId : string) => void
+    removeComment?: (commentId : string) => void,
+    setErrorAlert: React.Dispatch<React.SetStateAction<string | null>>
 }) => {
 
     const [userReacted, setUserReacted] = useState(comment.commentReactions.userReacted!);
     const [reactionCount, setReactionCount] = useState(comment.commentReactions.totalReactions || 0);
     const [replyActive, setReplyActive] = useState(false);
     const [editActive, setEditActive] = useState(false);
+    
+    
     
 
     const { handleReaction,
@@ -33,9 +36,16 @@ const CommentItem = ({ comment, removeComment}: {
         const { mutate : delete_comment, isPending : delete_pending } = useDeleteComment();
 
         const { user } = useGlobalStore();
+        console.log("USER : "+user.email)
 
     const toggleReplyOption = () => {
-        setReplyActive(!replyActive);
+        if(user.email) setReplyActive(!replyActive);
+        else {
+            setErrorAlert("Please login to reply!")
+            setTimeout(()=> {
+                setErrorAlert(null);
+            },3000)
+        }
     }
 
     const handleReactionLocally = () => {
@@ -75,13 +85,13 @@ const CommentItem = ({ comment, removeComment}: {
                 <span className={`font-normal text-sm text-primary opacity-40`}>{dayjs(comment.updatedAt).format('LLL')}</span>
             </p>
             {
-                editActive ?
+                editActive && user.email ? 
                 <EditComment comment={comment} toggleEditOption={toggleEditOption} />
                 :
                 <p className={`text-base font-mono`}>{comment.content}</p>
             }
             {
-                !editActive && 
+                !editActive && user.email &&  
                 <div className={`w-full flex justify-start items-center gap-4`}>
                 <button onClick={() => {
                     handleReactionLocally();
@@ -93,7 +103,7 @@ const CommentItem = ({ comment, removeComment}: {
                         Like{reactionCount > 1 && 's'}
                     </span>
                 </button>
-                {!comment.parentCommentId &&
+                {!comment.parentCommentId && user.email &&
                     <button onClick={toggleReplyOption} className={`btn btn-xs`}>
                         <LuMessageSquareReply className={`text-xl text-primary opacity-50`} />
                         <span className={`text-primary opacity-50 text-sm font-light`}>Reply</span>
@@ -117,7 +127,7 @@ const CommentItem = ({ comment, removeComment}: {
                 </div>
             }
             {
-                replyActive && 
+                replyActive && user.email && 
                 <CreateComment postId={comment.postId} parentId={comment.id} toggleReplyOption={toggleReplyOption} />
             }
             {
@@ -125,7 +135,7 @@ const CommentItem = ({ comment, removeComment}: {
 
                 comment.replies.map((reply) => {
                     return (
-                        <CommentItem key={reply.id} comment={reply}/>
+                        <CommentItem key={reply.id} comment={reply} setErrorAlert={setErrorAlert}/>
                     )
                 })
 
