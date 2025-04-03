@@ -2,7 +2,7 @@ import { CommentsDataResponseType, Pagination, PostsDataResponseType, ProfileDat
 import { ResponseType } from "@/types/enums";
 import { ErrorResponse } from "@/types/errors";
 import { PostsI, UserI } from "@/types/user";
-import { privateAccessClient } from "@/utils/axiosUtil";
+import { privateAccessClient, publicClient } from "@/utils/axiosUtil";
 import useGlobalStore from "@/utils/zustand";
 import { 
   QueryObserverResult, 
@@ -52,15 +52,13 @@ const useFetchComments = ({
     queryKey: ["comments-" + postId],
     queryFn: async ({ pageParam }) => {
         const currentPage = pageParam || initialPage;
-      let token = queryClient.getQueryData(['access-token']) || sessionToken || "";
-      const headers = {
-        Authorization: `Bearer ${token}`
-      };
+      // let token = queryClient.getQueryData(['access-token']) || sessionToken || "";
+      // const headers = {
+      //   Authorization: `Bearer ${token}`
+      // };
 
       try {
-        const fetchComments = await privateAccessClient.get(`/comment/${postId}?page=${currentPage}`, {
-          headers
-        });
+        const fetchComments = await publicClient.get(`/comment/${postId}?page=${currentPage}`);
         
         // Create response matching CommentsDataResponseType
         const response: CommentsDataResponseType = {

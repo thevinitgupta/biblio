@@ -17,12 +17,15 @@ const useSignup = () => {
         mutationKey: ["signup"],
         mutationFn: async (values: any) => {
             const signupCredentials = values as SignupFormData;
+            console.log("Signup data : ",signupCredentials)
             const { email, password, firstName, lastName } = SignupFormSchema.parse({
                 email: signupCredentials.email,
                 password: signupCredentials.password,
                 firstName : signupCredentials.firstName,
                 lastName : signupCredentials.lastName
             });
+
+
 
         const signupResponse : AxiosResponse = await authClient.post('/register',signupCredentials);
             console.log("Register Response : ",signupResponse)

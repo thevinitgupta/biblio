@@ -7,6 +7,9 @@ import useFetchReactions from '@/hooks/useFetchReactions';
 import { EntityReactions, EntityType } from '@/types/reaction';
 import React, { PropsWithChildren } from 'react'
 
+// DONE : Modify Post structure to include SLug
+// DONE : Use Slug instead of ID for URLs in View Post
+
 const PostPage = ({
   params
 }: {
@@ -22,7 +25,7 @@ const PostPage = ({
     error:fetch_reactions_error, 
     isLoading : fetch_reactions_loading
   } = useFetchReactions({
-    entityId : params.slug,
+    entityId : data?.data.id!,
     entityType : EntityType.POST,
     enabled : !isLoading && !error,
   })

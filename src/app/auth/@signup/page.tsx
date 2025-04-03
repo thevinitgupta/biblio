@@ -10,17 +10,26 @@ import { parseError, parseServerError } from "@/utils/errorParser";
 import { ErrorResponse } from "@/types/errors";
 import { useState } from "react";
 import useSignup from "@/hooks/useSignup";
+import { useRouter } from "next/navigation";
 
 function Signup() {
+    const router = useRouter();
     const { isPending, isError, error: server_signupError, data, mutate: server_getUser } =
         useSignup();
     const { register, handleSubmit } = useForm<SignupFormData>();
     const [error, setError] = useState<ErrorResponse | null>(null);
+    const [redirection, setRedirection] = useState<boolean>(false);
 
     const onSubmit: SubmitHandler<SignupFormData> = (formData) => {
         server_getUser(formData, {
             onSuccess: (data) => {
                 if (data.type === ResponseType.success) {
+                    setRedirection(true);
+                    setTimeout(() => {
+                        setRedirection(false);
+                        router.push("/auth#login");
+                    }, 1500);
+                    
                 }
             },
             onError: (lError) => {
@@ -56,10 +65,19 @@ function Signup() {
                         name="firstName"
                     />
                 </label>
+                <label className="input input-bordered flex items-center gap-2 w-full">
+                    <input
+                        type="text"
+                        className="grow"
+                        placeholder="Last Name"
+                        {...register("lastName")}
+                        name="lastName"
+                    />
+                </label>
                 <PasswordInput register={register} />
                 {
-                    isPending || data && !isError ?
-                    <Button.Loading message="Login" loadingMessage="Redirecting" type="button" onClick={() => {}} styles={`btn-disabled`} />
+                    isPending || data && !isError && redirection ?
+                    <Button.Loading message="Sign Up" loadingMessage="Redirecting" type="button" onClick={() => {}} styles={`btn-disabled`} />
                     :<Button.Primary message="Sign Up" type="submit" />
                 }
                 {isError && error && (
@@ -70,7 +88,7 @@ function Signup() {
                     />
                 )}
                 {data !== undefined && (
-                    <Alert.Default key={Date.now()} message={data.message} type={data.type} />
+                    <Alert.Default key={Date.now()} message={data.message+". Please login to proceed."} type={data.type} />
                 )}
             </form>
         </>

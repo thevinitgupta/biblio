@@ -16,8 +16,17 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import { GrArticle } from "react-icons/gr";
 import { FiUserPlus } from "react-icons/fi";
 
+enum navbar_items {
+    create = "Create New",
+    feed = "Feed",
+    login = "Login",
+    logout = "Logout",
+    home = "Home"
+}
+
 const ResponsiveNavbar = () => {
     const { mutate: logout_user, isError, isPending } = useLogout();
+    const [active, setActive] = useState<navbar_items>();
     const { sessionToken, theme, setTheme } = useGlobalStore();
     const [logoutError, setLogoutError] = useState({
         error: "",
@@ -42,6 +51,18 @@ const ResponsiveNavbar = () => {
             }
         });
     };
+
+    useEffect(() => {
+        if (pathname.includes("/create")) {
+            setActive(navbar_items.create);
+        } else if (pathname.includes("/post")) {
+            setActive(navbar_items.feed);
+        } else if (pathname.includes("/auth")) {
+            setActive(navbar_items.login);
+        } else {
+            setActive(navbar_items.home);
+        }
+    }, [pathname]);
 
     return (
         <nav className={pathname.startsWith("/auth") ? "hidden" : "navbar bg-base-200 w-[95vw] md:w-[90%] mx-0 md:mx-auto mb-5 px-5 py-4 sticky top-5 z-40 rounded-xl shadow-md"}>
@@ -99,14 +120,18 @@ const ResponsiveNavbar = () => {
 
             {/* Center Links (Desktop) */}
             <div className="navbar-center hidden md:flex flex-row justify-evenly w-3/5">
-                <Link className="flex items-center gap-2 text-lg" href="/create">
+                <Link className={`flex items-center gap-2 text-lg 
+                ${active === navbar_items.create ? "opacity-100" : "opacity-60"}
+                `} href="/create">
                     Create New <MdOutlinePostAdd />
                 </Link>
-                <Link className="flex items-center gap-2 text-lg" href="/post">
+                <Link className={`flex items-center gap-2 text-lg 
+                ${active === navbar_items.feed ? "opacity-100" : "opacity-60"}`} href="/post">
                     Feed <GrArticle />
                 </Link>
                 {!sessionToken && (
-                    <Link className="flex items-center gap-2 text-lg" href="/auth">
+                    <Link className={`flex items-center gap-2 text-lg
+                    ${active === navbar_items.login ? "opacity-100" : "opacity-60"}`} href="/auth">
                         Login <FiUserPlus />
                     </Link>
                 )}

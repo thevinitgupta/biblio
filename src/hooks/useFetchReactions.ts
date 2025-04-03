@@ -3,7 +3,7 @@ import { ResponseType } from "@/types/enums";
 import { ErrorResponse } from "@/types/errors";
 import { Post } from "@/types/post";
 import { EntityReactions, EntityType, ReactionsResponseData } from "@/types/reaction";
-import { privateAccessClient } from "@/utils/axiosUtil";
+import { privateAccessClient, publicClient } from "@/utils/axiosUtil";
 import useGlobalStore from "@/utils/zustand";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
@@ -28,17 +28,15 @@ const useFetchReactions  = ({
     const { data, error, isLoading } = useQuery<ReactionsResponseData>({
         queryKey: ["reaction-"+entityId],
         queryFn: async (): Promise<ReactionsResponseData> => {
-            let token = queryClient.getQueryData(['access-token']) || sessionToken || "";
-            const headers = {
-                Authorization: `Bearer ${token}`
-            };
+            // let token = queryClient.getQueryData(['access-token']) || sessionToken || "";
+            // const headers = {
+            //     Authorization: `Bearer ${token}`
+            // };
 
             
 
             try {
-                const fetchUser  = await privateAccessClient.get(`/reaction?type=${entityType}&id=${entityId}`, {
-                    headers
-                });
+                const fetchUser  = await publicClient.get(`/reaction?type=${entityType}&id=${entityId}`);
                 
                 return {
                     message: "Success",

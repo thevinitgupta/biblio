@@ -8,5 +8,8 @@ export interface Post {
     comments : string[];
     book : Book | null;
     coverImage : string;
+    slug : string;
+    createdAt: Date,
+    updatedAt: Date,
 }
 
