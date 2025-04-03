@@ -9,5 +9,7 @@ export interface Post {
     book : Book | null;
     coverImage : string;
     slug : string;
+    createdAt: Date,
+    updatedAt: Date,
 }
 
