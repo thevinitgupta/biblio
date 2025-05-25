@@ -71,7 +71,6 @@ const useCreatePost = () => {
       };
 
       console.log("Create Post headers : ", headers);
-      try {
         // console.log("Create Post body BASE64 : ",JSON.stringify(createPostData));
         const base64Encoded = Buffer.from(
           JSON.stringify(createPostData),
@@ -96,9 +95,6 @@ const useCreatePost = () => {
           message: createPostResponseMessage,
           type: ResponseType.success,
         };
-      } catch (error) {
-        console.log("BASE 64 ERROR : ", error);
-      }
     },
   });
 };
