@@ -24,6 +24,7 @@
     "dayjs": "^1.11.13",
     "fs": "^0.0.1-security",
     "jose": "^5.7.0",
+    "jsencrypt": "^3.3.2",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",

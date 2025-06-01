@@ -7,6 +7,7 @@ import DaisyThemeProvider from "@/hooks/useDaisyTheme";
 import Navbar from "@/components/Navbar";
 import TokenInitializer from "@/components/TokenInitializer";
 import ResponsiveNavbar from "@/components/ResponsiveNavbar";
+import PublicKeyInitializer from "@/components/globals/PublicKeyInitializer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
         <TanstackQueryProvider>
           {/* <TokenInitializer/> */}
           {/* <Navbar/> */}
+          <PublicKeyInitializer/>
           <ResponsiveNavbar/>
           {children}
 
