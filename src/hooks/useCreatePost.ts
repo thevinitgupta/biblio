@@ -80,7 +80,7 @@ const useCreatePost = () => {
 
         const createPostResponse: AxiosResponse = await openDataClient.post(
           "/posts/create",
-          base64Encoded,
+          createPostData,
           {
             headers: headers,
           }
