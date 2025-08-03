@@ -47,3 +47,15 @@ export type Pagination = {
     totalPages: number;
     hasMore: boolean;
 }
+
+
+export interface SimilarPostResponseDataI{
+    title: String,
+    slug : String,
+}
+
+export interface SimilarPostsResponseI {
+    data: Array<SimilarPostResponseDataI>,
+    message: string,
+    type: ResponseType
+}
