@@ -14,7 +14,7 @@ type UseFetchPosts =
             | null; isLoading: boolean
     };
 
-type UseFetchCommentsInfinite = {
+type UseFetchPostsInfinite = {
     data: InfiniteData<PostsDataResponseType> | undefined;
     error: ErrorResponse | null;
     isLoading: boolean;
@@ -24,7 +24,7 @@ type UseFetchCommentsInfinite = {
     refetch: (options?: RefetchOptions) => Promise<QueryObserverResult<InfiniteData<PostsDataResponseType, unknown>, Error>>;
 };
 
-const useFetchPosts = (): UseFetchCommentsInfinite => {
+const useFetchPosts = (): UseFetchPostsInfinite => {
     const queryClient = useQueryClient();
     const { sessionToken } = useGlobalStore();
 
